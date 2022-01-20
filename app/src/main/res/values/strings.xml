@@ -1,0 +1,57 @@
+<resources>
+    <string name="app_name">GKJ Jebres</string>
+    <string name="pengumuman">Pengumuman</string>
+    <string name="image">image</string>
+    <string name="gkj_jebres">GKJ JEBRES</string>
+    <string name="ibadah">Jadwal Ibadah Minggu</string>
+    <string name="pagi">Pagi : 06.30 WIB</string>
+    <string name="siang">Siang : 09.00 WIB</string>
+    <string name="sore">Sore : 05.00 WIB</string>
+    <string name="anak">Ibadah Anak Minggu : 07.30 WIB</string>
+    <string name="pers">Jadwal Persekutuan</string>
+    <string name="prkj">Persekutuan Remaja | Sabtu - 18.00 WIB</string>
+    <string name="ppkj">Persekutuan Pemuda | Senin - 18.30 WIB</string>
+    <string name="pdrabu">Persekutuan Doa Pagi Rabu | Tiap Rabu - 05.00 WIB</string>
+    <string name="ps">Jadwal Kegiatan Paduan Suara</string>
+    <string name="psamarisa">Paduan Suara Amarisa | Selasa - 19.00 WIB</string>
+    <string name="psgihon">Paduan Suara GIHON | Jumat - 05.00 WIB</string>
+    <string name="keglain">Jadwal Kegiatan Lain</string>
+    <string name="lgnsekar">Langen Sekar | Kamis 19.30 WIB</string>
+    <string name="leks">Latihan Leksionari | Jumat - 19.30 WIB</string>
+    <string name="kate">Katekisasi | Sabtu - 17.00 WIB</string>
+    <string name="title_activity_baptis_anak">Baptis_anak</string>
+    <string name="gkj_jebres1">GKJ Jebres</string>
+    <string name="profil">GKJ Jebres merupakan gereja yang tergabung dalam klasis Sala. Gereja ini didewasakan dari gereja induk GKJ Margoyudan pada tgl 28 Oktober 2002, beralamatkan di Jl. Pracanda 1 Kandangsapi, Surakarta, dengan satu wilayah pelayanannya kelurahan Jebres</string>
+    <string name="isi_sejarah">Pada tahun 1948-an di daerah Kandangsapi Surakarta tumbuh sebuah komunitas Kristen yang bernaung di GKJ Margoyudan. Komunitas Kristen itu pada 1986 - 1987 beribadah menumpang di rumah keluarga Bapak Suradi RT 02 / RW 32 seorang pensiunan ABRI.
+    Pada tanggal 5 April 1987 Kelompok Kebaktian Jebres diresmikan dalam kebaktian perdana yang dilayankan oleh Pendeta Suwardi, S.Th. Pada 1988 - 2001 berproses mengajukan diri dari kelompok kebaktian menjadi pepanthan ke GKJ Margoyudan dan pada tanggal 7 Februari 1993 diresmikan menjadi Pepanthan.
+    GKJ Jebres didewasakan oleh GKJ Jebres melakukan pemanggilan calon pendeta atas diri Sdr. Suwarto, S.Si dan setelah melewati pemilihan, pembimbingan, Ujian dan Vikariat ditahbiskan dan diteguhkan sebagai pendeta GKJ Jebres pada tanggal 28 Oktober 2006.
+    </string>
+    <string name="sejarah">Sejarah GKJ Jebres</string>
+    <string name="visi">Visi GKJ Jebres</string>
+    <string name="visi_isi">Visi GKJ Jebres adalah <b>"KESELAMATAN MANUSIA".</b> Dalam kehidupan bergereja visi tersebut diatas menjadi pedoman dan pandangan yang secara tidak langsung memberi instruksi kepada setiap jemaat untuk menjadi pemimpin dan pembimbing bagi jemaat yang lain
+    untuk mampu memiliki pemahaman dan pengelanan tentang Allah, diri sendiri dan keadaan secara tepat. Kemuliaan Allah dalam hidup dan kehidupan setiap jemaat harus selalu di nomor satukan dan karenanya siapapun yang percaya akan memperoleh karunia keselamatan, hidup dan kehidupan yang selamat.
+    </string>
+    <string name="misi">Misi GKJ Jebres</string>
+    <string name="misi_isi">Misi GKJ Jebres adalah <b>"PEMELIHARAAN IMAN DAN PEMBERITAAN KESELAMATAN MANUSIA".</b> Dalam kehidupan bergereja misi tersebut merupakan pernyataan yang bersifat filosofi sebagai dasar dari inti pelayanan yang dilakukan oleh semua warga jemaat, apapun jabatannya
+    dalam gereja, walaupun dilakukan secara perorangan harus berdampak positif secara intern dan ekstern berkaitan dengan keselamatan manusia</string>
+    <string-array name="nikah">
+        <item>Kristen</item>
+        <item>Katolik</item>
+        <item>Islam</item>
+        <item>Hindu</item>
+        <item>Budha</item>
+        <item>Adat</item>
+        <item>Lainnya</item>
+    </string-array>
+    <string-array name="pasangan">
+        <item>Masih</item>
+        <item>Cerai</item>
+        <item>Meninggal</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="l">L</string>
+    <string name="p">P</string>
+    <string name="sudah">Sudah</string>
+    <string name="belum">Belum</string>
+</resources>

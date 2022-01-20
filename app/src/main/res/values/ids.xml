@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="button_anak" type="id"></item>
+    <item name="button_sidi" type="id"></item>
+    <item name="button_dewasa" type="id"></item>
+</resources>

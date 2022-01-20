@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="id.egatutuko.gkjjebres">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.GKJJebres">
+        <activity
+            android:name=".activity.Pernikahan_daftar"
+            android:exported="false"
+            android:parentActivityName=".activity.Pernikahan">
+        </activity>
+        <activity
+            android:name=".activity.Pra_nikah"
+            android:exported="false"
+            android:parentActivityName=".activity.Pernikahan">
+        </activity>
+        <activity
+            android:name=".activity.Baptis_anak"
+            android:exported="false"
+            android:parentActivityName=".activity.Baptis">
+        </activity>
+        <activity
+            android:name=".activity.Baptis_dewasa"
+            android:exported="false"
+            android:parentActivityName=".activity.Baptis">
+        </activity>
+        <activity
+            android:name=".activity.Katekisasi"
+            android:parentActivityName=".activity.MainActivity">
+        </activity>
+        <activity
+            android:name=".activity.detail.DetailWartaJemaat"
+            android:parentActivityName=".activity.Warta" />
+        <activity
+            android:name=".activity.Kontak"
+            android:parentActivityName=".activity.MainActivity" />
+        <activity
+            android:name=".activity.Pernikahan"
+            android:parentActivityName=".activity.MainActivity">
+        </activity>
+        <activity
+            android:name=".activity.Baptis"
+            android:parentActivityName=".activity.MainActivity">
+        </activity>
+        <activity
+            android:name=".activity.Info"
+            android:parentActivityName=".activity.MainActivity">
+        </activity>
+        <activity
+            android:name=".activity.Renungan"
+            android:parentActivityName=".activity.MainActivity">
+        </activity>
+        <activity
+            android:name=".activity.VideoIbadah"
+            android:parentActivityName=".activity.MainActivity">
+        </activity>
+        <activity
+            android:name=".activity.Warta"
+            android:parentActivityName=".activity.MainActivity">
+        </activity>
+        <activity
+            android:name=".activity.Jadwal"
+            android:parentActivityName=".activity.MainActivity">
+        </activity>
+        <activity android:name=".activity.MainActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
