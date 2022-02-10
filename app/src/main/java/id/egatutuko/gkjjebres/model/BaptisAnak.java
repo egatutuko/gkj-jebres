@@ -3,26 +3,45 @@ package id.egatutuko.gkjjebres.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class BaptisAnak {
+import java.io.Serializable;
 
+public class BaptisAnak implements Serializable {
+
+    @SerializedName("tgl_daftar")
     private String tgl_daftar;
+    @SerializedName("nm_ayah")
     private String nm_ayah;
+    @SerializedName("agt_grj_ayah")
     private String agt_grj_ayah;
+    @SerializedName("almt_ayah")
     private String almt_ayah;
+    @SerializedName("no_induk_ayah")
     private String no_induk_ayah;
+    @SerializedName("agt_klp_ayah")
     private String agt_klp_ayah;
+    @SerializedName("nm_ibu")
     private String nm_ibu;
+    @SerializedName("agt_grj_ibu")
     private String agt_grj_ibu;
+    @SerializedName("almt_ibu")
     private String almt_ibu;
+    @SerializedName("no_induk_ibu")
     private String no_induk_ibu;
+    @SerializedName("agt_klp_ibu")
     private String agt_klp_ibu;
+    @SerializedName("nm_anak")
     private String nm_anak;
+    @SerializedName("tempat_lahir")
     private String tempat_lahir;
+    @SerializedName("no_akta")
     private String no_akta;
+    @SerializedName("file_akta")
+    private String file_akta;
+    @SerializedName("tempat_baptis")
     private String tempat_baptis;
+    @SerializedName("waktu_baptis")
     private String waktu_baptis;
-    private String message;
-    private String value;
+
 
     public BaptisAnak(String tgl_daftar, String nm_ayah, String agt_grj_ayah, String almt_ayah, String no_induk_ayah, String agt_klp_ayah, String nm_ibu, String agt_grj_ibu, String almt_ibu, String no_induk_ibu, String agt_klp_ibu, String nm_anak, String tempat_lahir, String no_akta, String tempat_baptis, String waktu_baptis) {
         this.tgl_daftar = tgl_daftar;
@@ -43,9 +62,12 @@ public class BaptisAnak {
         this.waktu_baptis = waktu_baptis;
     }
 
+    public String getFile_akta() {
+        return file_akta;
+    }
 
-    public String getValue() {
-        return value;
+    public void setFile_akta(String file_akta) {
+        this.file_akta = file_akta;
     }
 
     public String getTgl_daftar() {
@@ -174,9 +196,5 @@ public class BaptisAnak {
 
     public void setWaktu_baptis(String waktu_baptis) {
         this.waktu_baptis = waktu_baptis;
-    }
-
-    public String getMessage() {
-        return message;
     }
 }

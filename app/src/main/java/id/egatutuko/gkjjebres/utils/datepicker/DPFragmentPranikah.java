@@ -5,14 +5,14 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.widget.DatePicker;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
+
 import java.util.Calendar;
 
-public class DatePickerFragment extends DialogFragment
-        implements DatePickerDialog.OnDateSetListener {
-    // This is the listener for the activity
-    private DatePickerFragmentListener listener;
+public class DPFragmentPranikah extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+    private DPFragmentListenerPranikah listener;
 
     @NonNull
     @Override
@@ -32,13 +32,13 @@ public class DatePickerFragment extends DialogFragment
         listener.onDateSet(year, month, day);
     }
     // This is the method from the DatePicker fragment to implement in the Main Activity
-    public interface DatePickerFragmentListener{
-        public void onDateSet(int year, int month, int day);
+    public interface DPFragmentListenerPranikah {
+        void onDateSet(int year, int month, int day);
     }
 
     @Override
     public void onAttach(Context context){
         super.onAttach(context);
-        listener = (DatePickerFragmentListener) context;
+        listener = (DPFragmentListenerPranikah) context;
     }
 }

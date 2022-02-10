@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context=".activity.detail.Detail_Renungan">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:titleTextColor="@android:color/white">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Detail Renungan"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+    </androidx.appcompat.widget.Toolbar>
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Renungan Subuh"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20sp"/>
+    <TextView
+        android:id="@+id/tgl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="23 Januari 2022"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="13sp"/>
+    <TextView
+        android:id="@+id/penulis"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Penulis: Pdt. Suwarto S.Si"
+        android:textAlignment="center"
+        android:textColor="@color/black"/>
+    <TextView
+        android:id="@+id/deskripsi"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:text="Mazmur 84:10 (TB) (84-11) Sebab lebih baik satu hari di pelataran-Mu dari pada seribu hari di tempat lain; lebih baik berdiri di ambang pintu rumah Allahku dari pada diam di kemah-kemah orang fasik
+Tuhan akan senang jika kita punya ikrar lebih baik satu hari dipelataranmu / rumah Tuhan, maka mari kita beribadah dengan sungguh2 agar Tuhan senang melihat kita di Bait-Nya untuk beribadah
+Selamat pagi dan selamat melayani, selamat beribadah"
+        android:textAlignment="center"
+        android:textColor="@color/black"/>
+</LinearLayout>

@@ -5,322 +5,397 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:orientation="vertical"
     tools:context=".activity.Baptis_dewasa">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        android:minHeight="?attr/actionBarSize"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:titleTextColor="@android:color/white"
-        android:background="?attr/colorPrimary">
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:titleTextColor="@android:color/white">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Pendaftaran Baptis Dewasa"
             android:textColor="@color/white"
             android:textSize="16sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
     </androidx.appcompat.widget.Toolbar>
+
     <TextView
-        android:layout_gravity="end"
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_gravity="end"
         android:layout_marginTop="16dp"
-        android:textColor="@color/black"/>
+        android:layout_marginEnd="16dp"
+        android:textColor="@color/black" />
+
     <ScrollView
-        android:layout_margin="16dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_margin="16dp">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <TextView
                 android:id="@+id/data_pemohon"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="21sp"
+                android:layout_height="match_parent"
+                android:text="Data Pemohon"
                 android:textColor="@color/black"
-                android:text="Data Pemohon"/>
+                android:textSize="21sp" />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputLayout1"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_margin="5dp"
-                android:layout_below="@id/data_pemohon"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:layout_below="@id/data_pemohon"
+                android:layout_margin="5dp">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/nama"
-                    android:paddingStart="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="30"
-                    android:hint="Nama Lengkap" />
+                    android:layout_height="match_parent"
+                    android:hint="Nama Lengkap"
+                    android:maxLength="30"
+                    android:paddingStart="10dp"
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <TextView
                 android:id="@+id/jk"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_below="@id/inputLayout1"
                 android:layout_marginLeft="4dp"
                 android:layout_marginTop="13dp"
                 android:text="Jenis Kelamin :"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
+
             <RadioGroup
+                android:id="@+id/rg1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_below="@id/inputLayout1"
                 android:layout_toRightOf="@id/jk"
-                android:id="@+id/rg1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <RadioButton
                     android:id="@+id/laki"
+                    android:layout_width="35dp"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/black"
+                    android:text="@string/l"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:text="Laki - Laki"
-                    android:buttonTint="@color/black"
-                    android:onClick="radioButtonHandler"/>
+                    android:text="Laki-laki"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
                 <RadioButton
                     android:id="@+id/perempuan"
+                    android:layout_width="35dp"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/black"
+                    android:text="@string/p"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="14sp"
                     android:text="Perempuan"
-                    android:buttonTint="@color/black"
-                    android:onClick="radioButtonHandler"/>
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
             </RadioGroup>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputLayout2"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="5dp"
-                android:layout_below="@id/jk"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:layout_below="@id/jk"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/alamat"
-                    android:paddingStart="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="30"
-                    android:hint="Alamat" />
+                    android:layout_height="match_parent"
+                    android:hint="Alamat"
+                    android:maxLength="50"
+                    android:paddingStart="10dp"
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
-            <TextView
-                android:id="@+id/tgl"
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputLayout34"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_below="@id/inputLayout2"
-                android:layout_marginTop="13dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
-                android:textSize="16sp"
-                android:textColor="@color/black"
-                android:text="Tanggal Lahir :"/>
-            <Button
-                android:id="@+id/pilih_tanggal"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_below="@id/inputLayout2"
-                android:layout_toRightOf="@id/tgl"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
                 android:text="Pilih Tanggal"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tanggal_lahir"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusableInTouchMode="false"
+                    android:hint="Tanggal Lahir"
+                    android:paddingStart="10dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputLayout3"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="5dp"
-                android:layout_below="@id/tgl"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:layout_below="@id/inputLayout34"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tempat_lahir"
-                    android:paddingStart="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="30"
-                    android:hint="Tempat Lahir" />
+                    android:layout_height="match_parent"
+                    android:hint="Tempat Lahir"
+                    android:maxLength="15"
+                    android:paddingStart="10dp"
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
-            <TextView
-                android:id="@+id/tgl1"
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputLayout35"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_below="@id/inputLayout3"
-                android:layout_marginTop="13dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
-                android:textSize="16sp"
-                android:textColor="@color/black"
-                android:text="Tanggal Baptis :"/>
-            <Button
-                android:id="@+id/pilih_tanggal1"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_below="@id/inputLayout3"
-                android:layout_toRightOf="@id/tgl"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
                 android:text="Pilih Tanggal"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tanggal_baptis1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusableInTouchMode="false"
+                    android:hint="Tangal Baptis Kecil"
+                    android:paddingStart="10dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputLayout4"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="5dp"
-                android:layout_below="@id/tgl1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:layout_below="@id/inputLayout35"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tempat_baptis"
-                    android:paddingStart="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="30"
-                    android:hint="Tempat Baptis" />
+                    android:layout_height="match_parent"
+                    android:hint="Tempat Baptis"
+                    android:maxLength="10"
+                    android:paddingStart="10dp"
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputLayout5"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_margin="5dp"
-                android:layout_below="@id/inputLayout4"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:layout_below="@id/inputLayout4"
+                android:layout_margin="5dp">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/pembaptis"
-                    android:paddingStart="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="30"
-                    android:hint="Dibaptis Oleh" />
+                    android:layout_height="match_parent"
+                    android:hint="Dibaptis Oleh"
+                    android:maxLength="30"
+                    android:paddingStart="10dp"
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
-            <TextView
-                android:id="@+id/tgl2"
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputLayout36"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_below="@id/inputLayout5"
-                android:layout_marginTop="13dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
-                android:textSize="16sp"
-                android:textColor="@color/black"
-                android:text="Tanggal Baptis :"/>
-            <Button
-                android:id="@+id/pilih_tanggal2"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_below="@id/inputLayout5"
-                android:layout_toRightOf="@id/tgl"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
                 android:text="Pilih Tanggal"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tanggal_nikah"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusableInTouchMode="false"
+                    android:hint="Tanggal Menikah"
+                    android:paddingStart="10dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputLayout6"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="5dp"
-                android:layout_below="@id/tgl2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_below="@id/inputLayout36"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
                 android:hint="Menikah Secara">
+
                 <AutoCompleteTextView
                     android:id="@+id/prosesi_nikah"
-                    android:padding="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="none"/>
+                    android:inputType="none"
+                    android:padding="10dp" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputLayout7"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_margin="5dp"
-                android:layout_below="@id/inputLayout6"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:layout_below="@id/inputLayout6"
+                android:layout_margin="5dp">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/sekolah"
-                    android:paddingStart="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="30"
-                    android:hint="Pendidikan / Sekolah" />
+                    android:layout_height="match_parent"
+                    android:hint="Pendidikan / Sekolah"
+                    android:maxLength="5"
+                    android:paddingStart="10dp"
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputLayout8"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_margin="5dp"
-                android:layout_below="@id/inputLayout7"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:layout_below="@id/inputLayout7"
+                android:layout_margin="5dp">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/pekerjaan"
-                    android:paddingStart="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="30"
-                    android:hint="Pekerjaan" />
+                    android:layout_height="match_parent"
+                    android:hint="Pekerjaan"
+                    android:maxLength="15"
+                    android:paddingStart="10dp"
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputLayout9"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_margin="5dp"
-                android:layout_below="@id/inputLayout8"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:layout_below="@id/inputLayout8"
+                android:layout_margin="5dp">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/alamat_kerja"
-                    android:paddingStart="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="30"
-                    android:hint="Alamat Pekerjaan" />
+                    android:layout_height="match_parent"
+                    android:hint="Alamat Pekerjaan"
+                    android:maxLength="50"
+                    android:paddingStart="10dp"
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputLayout10"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_margin="5dp"
-                android:layout_below="@id/inputLayout9"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:layout_below="@id/inputLayout9"
+                android:layout_margin="5dp">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/keterangan"
-                    android:paddingStart="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="30"
-                    android:hint="Keterangan Lain-lain" />
+                    android:layout_height="match_parent"
+                    android:hint="Keterangan Lain-lain"
+                    android:inputType="text"
+                    android:maxLength="3"
+                    android:paddingStart="10dp" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <TextView
                 android:id="@+id/data_ortu"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_below="@id/inputLayout10"
                 android:layout_marginTop="16dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="21sp"
+                android:text="Data Orang Tua"
                 android:textColor="@color/black"
-                android:text="Data Orang Tua"/>
+                android:textSize="21sp" />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputLayout11"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_margin="5dp"
-                android:layout_below="@id/data_ortu"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:layout_below="@id/data_ortu"
+                android:layout_margin="5dp">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/nama_ayah"
-                    android:paddingStart="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="30"
-                    android:hint="Nama Lengkap Ayah" />
+                    android:layout_height="match_parent"
+                    android:hint="Nama Lengkap Ayah"
+                    android:maxLength="30"
+                    android:paddingStart="10dp"
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <TextView
                 android:id="@+id/status_ayah"
                 android:layout_width="wrap_content"
@@ -331,78 +406,89 @@
                 android:text="Status Ayah :"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
+
             <RadioGroup
+                android:id="@+id/rg2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_below="@id/inputLayout11"
                 android:layout_toRightOf="@id/status_ayah"
-                android:id="@+id/rg2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <RadioButton
                     android:id="@+id/kristen"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:text="Kristen"
+                    android:layout_height="match_parent"
                     android:buttonTint="@color/black"
-                    android:onClick="radioButtonHandler"/>
+                    android:text="Kristen"
+                    android:textSize="14sp" />
+
                 <RadioButton
                     android:id="@+id/belum"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:text="Belum Kristen"
+                    android:layout_height="match_parent"
                     android:buttonTint="@color/black"
-                    android:onClick="radioButtonHandler"/>
+                    android:text="Belum Kristen"
+                    android:textSize="14sp" />
             </RadioGroup>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputLayout12"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_marginTop="16dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginBottom="5dp"
-                android:layout_below="@id/status_ayah"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:layout_below="@id/status_ayah"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/agt_grj_ayah"
-                    android:paddingStart="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="30"
-                    android:hint="Anggota Gereja Ayah"/>
+                    android:layout_height="match_parent"
+                    android:hint="Anggota Gereja Ayah"
+                    android:maxLength="10"
+                    android:paddingStart="10dp"
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputLayout13"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_margin="5dp"
-                android:layout_below="@id/inputLayout12"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:layout_below="@id/inputLayout12"
+                android:layout_margin="5dp">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/no_induk_ayah"
-                    android:paddingStart="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="30"
-                    android:hint="No. Induk Ayah" />
+                    android:layout_height="match_parent"
+                    android:hint="No. Induk Ayah"
+                    android:maxLength="10"
+                    android:paddingStart="10dp"
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputLayout14"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_margin="5dp"
-                android:layout_below="@id/inputLayout13"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:layout_below="@id/inputLayout13"
+                android:layout_margin="5dp">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/nama_ibu"
-                    android:paddingStart="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="30"
-                    android:hint="Nama Lengkap Ibu" />
+                    android:layout_height="match_parent"
+                    android:hint="Nama Lengkap Ibu"
+                    android:maxLength="30"
+                    android:paddingStart="10dp"
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <TextView
                 android:id="@+id/status_ibu"
                 android:layout_width="wrap_content"
@@ -413,102 +499,117 @@
                 android:text="Status Ibu :"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
+
             <RadioGroup
+                android:id="@+id/rg3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_below="@id/inputLayout14"
                 android:layout_toRightOf="@id/status_ayah"
-                android:id="@+id/rg3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <RadioButton
                     android:id="@+id/kristen1"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:text="Kristen"
+                    android:layout_height="match_parent"
                     android:buttonTint="@color/black"
-                    android:onClick="radioButtonHandler"/>
+                    android:text="Kristen"
+                    android:textSize="14sp" />
+
                 <RadioButton
                     android:id="@+id/belum1"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:text="Belum Kristen"
+                    android:layout_height="match_parent"
                     android:buttonTint="@color/black"
-                    android:onClick="radioButtonHandler"/>
+                    android:text="Belum Kristen"
+                    android:textSize="14sp" />
             </RadioGroup>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputLayout15"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_marginTop="16dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginBottom="5dp"
-                android:layout_below="@id/status_ibu"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:layout_below="@id/status_ibu"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/agt_grj_ibu"
-                    android:paddingStart="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="30"
-                    android:hint="Anggota Gereja Ibu"/>
+                    android:layout_height="match_parent"
+                    android:hint="Anggota Gereja Ibu"
+                    android:maxLength="10"
+                    android:paddingStart="10dp"
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputLayout16"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_margin="5dp"
-                android:layout_below="@id/inputLayout15"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:layout_below="@id/inputLayout15"
+                android:layout_margin="5dp">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/no_induk_ibu"
-                    android:paddingStart="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="30"
-                    android:hint="No. Induk Ibu" />
+                    android:layout_height="match_parent"
+                    android:hint="No. Induk Ibu"
+                    android:maxLength="10"
+                    android:paddingStart="10dp"
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputLayout17"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_margin="5dp"
-                android:layout_below="@id/inputLayout16"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:layout_below="@id/inputLayout16"
+                android:layout_margin="5dp">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/alamat_ortu"
-                    android:paddingStart="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="30"
-                    android:hint="Alamat lengkap" />
+                    android:layout_height="match_parent"
+                    android:hint="Alamat lengkap"
+                    android:maxLength="50"
+                    android:paddingStart="10dp"
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <TextView
                 android:id="@+id/data_tunangan"
-                android:layout_below="@id/inputLayout17"
-                android:layout_marginTop="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="21sp"
+                android:layout_below="@id/inputLayout17"
+                android:layout_marginTop="16dp"
+                android:text="Data Tunangan"
                 android:textColor="@color/black"
-                android:text="Data Tunangan"/>
+                android:textSize="21sp" />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputLayout18"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_margin="5dp"
-                android:layout_below="@id/data_tunangan"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:layout_below="@id/data_tunangan"
+                android:layout_margin="5dp">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/nama_tunangan"
-                    android:paddingStart="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="30"
-                    android:hint="Nama Lengkap" />
+                    android:layout_height="match_parent"
+                    android:hint="Nama Lengkap"
+                    android:maxLength="30"
+                    android:paddingStart="10dp"
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <TextView
                 android:id="@+id/status_tunangan"
                 android:layout_width="wrap_content"
@@ -519,121 +620,141 @@
                 android:text="Status : "
                 android:textColor="@color/black"
                 android:textSize="15sp" />
+
             <RadioGroup
+                android:id="@+id/rg4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_below="@id/inputLayout18"
                 android:layout_toRightOf="@id/status_tunangan"
-                android:id="@+id/rg4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <RadioButton
                     android:id="@+id/kristen2"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:text="Kristen"
+                    android:layout_height="match_parent"
                     android:buttonTint="@color/black"
-                    android:onClick="radioButtonHandler"/>
+                    android:text="Kristen"
+                    android:textSize="14sp" />
+
                 <RadioButton
                     android:id="@+id/belum2"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:text="Belum Kristen"
+                    android:layout_height="match_parent"
                     android:buttonTint="@color/black"
-                    android:onClick="radioButtonHandler"/>
+                    android:text="Belum Kristen"
+                    android:textSize="14sp" />
             </RadioGroup>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputLayout19"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_marginTop="16dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginBottom="5dp"
-                android:layout_below="@id/status_tunangan"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:layout_below="@id/status_tunangan"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/agt_grj_tunangan"
-                    android:paddingStart="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="30"
-                    android:hint="Anggota Gereja"/>
+                    android:layout_height="match_parent"
+                    android:hint="Anggota Gereja"
+                    android:maxLength="10"
+                    android:paddingStart="10dp"
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputLayout20"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_margin="5dp"
-                android:layout_below="@id/inputLayout19"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:layout_below="@id/inputLayout19"
+                android:layout_margin="5dp">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/no_induk_tunangan"
-                    android:paddingStart="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="30"
-                    android:hint="No. Induk" />
+                    android:layout_height="match_parent"
+                    android:hint="No. Induk"
+                    android:maxLength="10"
+                    android:paddingStart="10dp"
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputLayout21"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_margin="5dp"
-                android:layout_below="@id/inputLayout20"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:layout_below="@id/inputLayout20"
+                android:layout_margin="5dp">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/alamat_tunangan"
-                    android:paddingStart="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="30"
-                    android:hint="Alamat lengkap" />
+                    android:layout_height="match_parent"
+                    android:hint="Alamat lengkap"
+                    android:maxLength="50"
+                    android:paddingStart="10dp"
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
-            <TextView
-                android:id="@+id/tgl3"
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputLayout37"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_below="@id/inputLayout21"
-                android:layout_marginTop="13dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
-                android:textSize="16sp"
-                android:textColor="@color/black"
-                android:text="Tanggal Bertunangan :"/>
-            <Button
-                android:id="@+id/pilih_tanggal3"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_below="@id/inputLayout21"
-                android:layout_toRightOf="@id/tgl3"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
                 android:text="Pilih Tanggal"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tanggal_tunangan"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusableInTouchMode="false"
+                    android:hint="Tanggal Bertunangan"
+                    android:paddingStart="10dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
             <TextView
                 android:id="@+id/data_pasangan"
-                android:layout_below="@id/tgl3"
-                android:layout_marginTop="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="21sp"
+                android:layout_below="@id/inputLayout37"
+                android:layout_marginTop="16dp"
+                android:text="Data Suami/Istri"
                 android:textColor="@color/black"
-                android:text="Data Suami/Istri"/>
+                android:textSize="21sp" />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputLayout22"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_margin="5dp"
-                android:layout_below="@id/data_pasangan"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:layout_below="@id/data_pasangan"
+                android:layout_margin="5dp">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/nama_pasangan"
-                    android:paddingStart="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="30"
-                    android:hint="Nama Suami/Istri"/>
+                    android:layout_height="match_parent"
+                    android:hint="Nama Suami/Istri"
+                    android:maxLength="30"
+                    android:paddingStart="10dp"
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <TextView
                 android:id="@+id/status_pasangan"
                 android:layout_width="wrap_content"
@@ -644,189 +765,201 @@
                 android:text="Status : "
                 android:textColor="@color/black"
                 android:textSize="15sp" />
+
             <RadioGroup
+                android:id="@+id/rg5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_below="@id/inputLayout22"
                 android:layout_toRightOf="@id/status_pasangan"
-                android:id="@+id/rg5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <RadioButton
                     android:id="@+id/kristen3"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:text="Kristen"
+                    android:layout_height="match_parent"
                     android:buttonTint="@color/black"
-                    android:onClick="radioButtonHandler"/>
+                    android:text="Kristen"
+                    android:textSize="14sp" />
+
                 <RadioButton
                     android:id="@+id/belum3"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:text="Belum Kristen"
+                    android:layout_height="match_parent"
                     android:buttonTint="@color/black"
-                    android:onClick="radioButtonHandler"/>
+                    android:text="Belum Kristen"
+                    android:textSize="14sp" />
             </RadioGroup>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputLayout23"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_marginTop="16dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginBottom="5dp"
-                android:layout_below="@id/status_pasangan"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:layout_below="@id/status_pasangan"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/agt_grj_pasangan"
-                    android:paddingStart="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="30"
-                    android:hint="Anggota Gereja"/>
+                    android:layout_height="match_parent"
+                    android:hint="Anggota Gereja"
+                    android:maxLength="10"
+                    android:paddingStart="10dp"
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputLayout24"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_margin="5dp"
-                android:layout_below="@id/inputLayout23"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:layout_below="@id/inputLayout23"
+                android:layout_margin="5dp">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/no_induk_pasangan"
-                    android:paddingStart="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="30"
-                    android:hint="No. Induk" />
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/inputLayout25"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_margin="5dp"
-                android:layout_below="@id/inputLayout24"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/alamat_pasangan"
+                    android:layout_height="match_parent"
+                    android:hint="No. Induk"
+                    android:maxLength="10"
                     android:paddingStart="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="30"
-                    android:hint="Alamat lengkap" />
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputLayout26"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                android:layout_margin="5dp"
-                android:layout_below="@id/inputLayout25"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_below="@id/inputLayout24"
+                android:layout_margin="5dp"
                 android:hint="Keterangan">
+
                 <AutoCompleteTextView
                     android:id="@+id/keterangan_pasangan"
-                    android:paddingStart="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="none"/>
+                    android:inputType="none"
+                    android:paddingStart="10dp" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputLayout27"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_margin="5dp"
-                android:layout_below="@id/inputLayout26"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:layout_below="@id/inputLayout26"
+                android:layout_margin="5dp">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/jml_anak"
-                    android:paddingStart="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:hint="Jumlah Anak"
                     android:inputType="number"
-                    android:ems="30"
-                    android:hint="Jumlah Anak" />
+                    android:maxLength="2"
+                    android:paddingStart="10dp"
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputLayout28"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_margin="5dp"
-                android:layout_below="@id/inputLayout27"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:layout_below="@id/inputLayout27"
+                android:layout_margin="5dp">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/anak_dlm_asuhan"
-                    android:paddingStart="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:hint="Anak yang masih dalam asuhan"
                     android:inputType="number"
-                    android:ems="30"
-                    android:hint="Anak yang masih dalam asuhan" />
+                    android:maxLength="2"
+                    android:paddingStart="10dp"
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <TextView
                 android:id="@+id/data_katekisasi"
-                android:layout_below="@id/inputLayout28"
-                android:layout_marginTop="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="21sp"
+                android:layout_below="@id/inputLayout28"
+                android:layout_marginTop="16dp"
+                android:text="Data Katekisasi"
                 android:textColor="@color/black"
-                android:text="Data Katekisasi"/>
+                android:textSize="21sp" />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputLayout29"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_margin="5dp"
-                android:layout_below="@id/data_katekisasi"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:layout_below="@id/data_katekisasi"
+                android:layout_margin="5dp">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/nama_pengajar"
-                    android:paddingStart="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="30"
-                    android:hint="Nama Pengajar"/>
+                    android:layout_height="match_parent"
+                    android:hint="Nama Pengajar"
+                    android:maxLength="30"
+                    android:paddingStart="10dp"
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputLayout30"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_margin="5dp"
-                android:layout_below="@id/inputLayout29"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:layout_below="@id/inputLayout29"
+                android:layout_margin="5dp">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/lama_katekisasi"
-                    android:paddingStart="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:hint="Lama (Bulan)"
                     android:inputType="number"
-                    android:ems="30"
-                    android:hint="Lama (Bulan)"/>
+                    android:maxLength="2"
+                    android:paddingStart="10dp"
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputLayout31"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_margin="5dp"
-                android:layout_below="@id/inputLayout30"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:layout_below="@id/inputLayout30"
+                android:layout_margin="5dp">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tempat_katekisasi"
-                    android:paddingStart="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="30"
-                    android:hint="Tempat Katekisasi"/>
+                    android:layout_height="match_parent"
+                    android:hint="Tempat Katekisasi"
+                    android:maxLength="10"
+                    android:paddingStart="10dp"
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <TextView
                 android:id="@+id/baptis"
-                android:layout_below="@id/inputLayout31"
-                android:layout_marginTop="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="21sp"
+                android:layout_below="@id/inputLayout31"
+                android:layout_marginTop="16dp"
+                android:text="Pilih waktu dan tempat Sidi / Baptis"
                 android:textColor="@color/black"
-                android:text="Pilih waktu dan tempat Sidi / Baptis"/>
+                android:textSize="21sp" />
+
             <TextView
                 android:id="@+id/pilih_baptis"
                 android:layout_width="wrap_content"
@@ -837,92 +970,105 @@
                 android:text="Pilih : "
                 android:textColor="@color/black"
                 android:textSize="15sp" />
+
             <RadioGroup
+                android:id="@+id/rg6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_below="@id/baptis"
                 android:layout_toRightOf="@id/pilih_baptis"
-                android:id="@+id/rg6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <RadioButton
                     android:id="@+id/dewasa"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:text="Baptis Dewasa"
+                    android:layout_height="match_parent"
                     android:buttonTint="@color/black"
-                    android:onClick="radioButtonHandler"/>
+                    android:text="Baptis Dewasa"
+                    android:textSize="14sp" />
+
                 <RadioButton
                     android:id="@+id/sidi"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:text="Sidi"
+                    android:layout_height="match_parent"
                     android:buttonTint="@color/black"
-                    android:onClick="radioButtonHandler"/>
+                    android:text="Sidi"
+                    android:textSize="14sp" />
             </RadioGroup>
-            <TextView
-                android:id="@+id/tgl4"
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputLayout38"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_below="@id/rg6"
-                android:layout_marginTop="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
-                android:textSize="16sp"
-                android:textColor="@color/black"
-                android:text="Tanggal Baptis :"/>
-            <Button
-                android:id="@+id/pilih_tanggal4"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_below="@id/rg6"
-                android:layout_toRightOf="@id/tgl4"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
                 android:text="Pilih Tanggal"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tanggal_baptis"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusableInTouchMode="false"
+                    android:hint="Tanggal Baptis"
+                    android:paddingStart="10dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputLayout32"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="5dp"
-                android:layout_below="@id/tgl4"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:layout_below="@id/inputLayout38"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tempat_baptis1"
-                    android:paddingStart="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="30"
-                    android:hint="Tempat Baptis"/>
+                    android:layout_height="match_parent"
+                    android:hint="Tempat Baptis"
+                    android:maxLength="10"
+                    android:paddingStart="10dp"
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputLayout33"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_margin="5dp"
-                android:layout_below="@id/inputLayout32"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:layout_below="@id/inputLayout32"
+                android:layout_margin="5dp">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/jam_baptis"
-                    android:paddingStart="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:hint="Jam Baptis"
                     android:inputType="number"
-                    android:ems="30"
-                    android:hint="Jam Baptis"/>
+                    android:maxLength="5"
+                    android:paddingStart="10dp"
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <Button
                 android:id="@+id/submit"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_below="@id/inputLayout33"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="16dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="Daftar"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white" />
         </RelativeLayout>
     </ScrollView>
 </LinearLayout>

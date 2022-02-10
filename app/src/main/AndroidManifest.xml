@@ -8,9 +8,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo_gkj"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo_gkj_1"
         android:supportsRtl="true"
         android:theme="@style/Theme.GKJJebres">
         <activity
@@ -38,8 +38,8 @@
             android:parentActivityName=".activity.MainActivity">
         </activity>
         <activity
-            android:name=".activity.detail.DetailWartaJemaat"
-            android:parentActivityName=".activity.Warta" />
+            android:name=".activity.detail.Detail_Renungan"
+            android:parentActivityName=".activity.Renungan" />
         <activity
             android:name=".activity.Kontak"
             android:parentActivityName=".activity.MainActivity" />

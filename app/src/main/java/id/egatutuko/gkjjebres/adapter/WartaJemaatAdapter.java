@@ -2,6 +2,7 @@ package id.egatutuko.gkjjebres.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,12 +12,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
 import id.egatutuko.gkjjebres.R;
-import id.egatutuko.gkjjebres.activity.detail.DetailWartaJemaat;
+import id.egatutuko.gkjjebres.activity.Baptis;
+import id.egatutuko.gkjjebres.activity.Info;
+import id.egatutuko.gkjjebres.activity.Jadwal;
+import id.egatutuko.gkjjebres.activity.Katekisasi;
+import id.egatutuko.gkjjebres.activity.Kontak;
+import id.egatutuko.gkjjebres.activity.MainActivity;
+import id.egatutuko.gkjjebres.activity.Pernikahan;
+import id.egatutuko.gkjjebres.activity.Renungan;
+import id.egatutuko.gkjjebres.activity.VideoIbadah;
+import id.egatutuko.gkjjebres.activity.Warta;
 import id.egatutuko.gkjjebres.model.RecyclerDataWartaJemaat;
 
 public class WartaJemaatAdapter extends RecyclerView.Adapter<WartaJemaatAdapter.RecyclerViewHolder> {
@@ -46,6 +54,33 @@ public class WartaJemaatAdapter extends RecyclerView.Adapter<WartaJemaatAdapter.
 
         @Override
         public void onClick(View v) {
+            int position = getBindingAdapterPosition();
+            Intent intent = new Intent();
+            String url1 = "https://drive.google.com/file/d/1hHi9NVycw39HnwU1Hb50MArYeontTcFN/view?usp=sharing";
+            String url2 = "https://drive.google.com/file/d/1zBPbhKtNSc7I0Av1Ku8aJCISt3FjHtFP/view?usp=sharing";
+            String url3 = "https://drive.google.com/file/d/1QQiCezlJO3JU7pIleE1CIrr2COPK00se/view?usp=sharing";
+            String url4 = "https://drive.google.com/file/d/17KRdgN6TOcZ5w7QoaAIUI82tpTmedPTg/view?usp=sharing";
+            String url5 = "https://drive.google.com/file/d/1_BwKFY9t75QxhvcdTY8OGrXT4oqOYiEo/view?usp=sharing";
+            switch (getBindingAdapterPosition()){
+                case 0:
+                    intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url1));
+                    break;
+                case 1:
+                    intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url2));
+                    break;
+                case 2:
+                    intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url3));
+                    break;
+                case 3:
+                    intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url4));
+                    break;
+                case 4:
+                    intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url5));
+                    break;
+                default:
+                break;
+            }
+            context.startActivity(intent);
         }
     }
 

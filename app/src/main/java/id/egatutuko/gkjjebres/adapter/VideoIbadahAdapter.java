@@ -51,19 +51,16 @@ public class VideoIbadahAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             String getThumb = data.getSnippet().getThumbnails().getMedium().getUrl();
 
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent appIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:"+data.getId().getVideoId()));
-                    context.startActivity(appIntent);
-                }
+            itemView.setOnClickListener(v -> {
+                Intent appIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:"+data.getId().getVideoId()));
+                context.startActivity(appIntent);
             });
 
             title.setText(getJudul);
             tanggal.setText("Diupload tanggal : " +ChangeTo.dateFormated(getTgl));
             Picasso.get()
                     .load(getThumb)
-                    .placeholder(R.mipmap.ic_launcher)
+                    .placeholder(R.drawable.ic_logo_gkj)
                     .fit()
                     .centerCrop()
                     .into(thumbnail, new Callback() {

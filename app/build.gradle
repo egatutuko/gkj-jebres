@@ -3,6 +3,14 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file('D:\\ANDROID\\android-key-store.jks')
+            storePassword 'tutuko131299'
+            keyAlias 'key0'
+            keyPassword 'tutuko131299'
+        }
+    }
     compileSdkVersion 31
     buildToolsVersion '31.0.0'
 
@@ -14,6 +22,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.debug
     }
 
     buildTypes {
@@ -52,6 +61,7 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.3'
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+//    implementation 'com.amitshekhar.android:android-networking:1.0.2'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
