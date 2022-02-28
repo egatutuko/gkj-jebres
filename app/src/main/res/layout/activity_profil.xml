@@ -8,7 +8,7 @@
     android:focusable="true"
     android:focusableInTouchMode="true"
     android:orientation="vertical"
-    tools:context=".activity.Pernikahan_daftar">
+    tools:context=".activity.Profil">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -21,26 +21,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pendaftaran Pelayanan Pernikahan"
+            android:text="Profil"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold" />
     </androidx.appcompat.widget.Toolbar>
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:layout_margin="16dp"
-        android:textColor="@color/black" />
-
-    <TextView
-        android:id="@+id/jenkel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:textColor="@color/black" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -52,27 +37,77 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/data_csuami"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Data Calon Suami"
+                android:id="@+id/dataPribadi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Profil Anda"
                 android:textColor="@color/black"
                 android:textSize="21sp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputLayout19"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/dataPribadi"
+                android:layout_margin="5dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/noinduk"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:hint="No. Induk Gereja"
+                    android:maxLength="30"
+                    android:paddingStart="10dp"
+                    android:singleLine="true"
+                    android:textSize="16sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputLayout21"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/inputLayout19"
+                android:layout_margin="5dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/kgereja"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:hint="Kelompok Gereja"
+                    android:maxLength="30"
+                    android:paddingStart="10dp"
+                    android:singleLine="true"
+                    android:textSize="16sp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputLayout1"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/data_csuami"
+                android:layout_below="@id/inputLayout21"
                 android:layout_margin="5dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/nama_csuami"
+                    android:id="@+id/nmlengkap"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
                     android:hint="Nama Lengkap"
-                    android:maxLength="39"
+                    android:maxLength="30"
                     android:paddingStart="10dp"
                     android:singleLine="true"
                     android:textSize="16sp" />
@@ -90,25 +125,27 @@
                     android:id="@+id/tempat_lahir"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="Tempat lahir"
-                    android:maxLength="15"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:hint="Tempat Lahir"
+                    android:maxLength="11"
                     android:paddingStart="10dp"
                     android:singleLine="true"
                     android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/pilih_tanggal"
+                android:id="@+id/inputLayout3"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_below="@id/inputLayout2"
-                android:layout_margin="5dp"
-                android:text="Pilih Tanggal"
-                android:textColor="@color/white">
+                android:layout_margin="5dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tglCsuami"
+                    android:id="@+id/tgl_lahir"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:clickable="false"
@@ -116,64 +153,68 @@
                     android:focusable="false"
                     android:focusableInTouchMode="false"
                     android:hint="Tanggal Lahir"
-                    android:paddingStart="10dp" />
+                    android:textColor="@color/black" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/inputLayout3"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/pilih_tanggal"
-                android:layout_margin="5dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/agama"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Agama"
-                    android:maxLength="8"
-                    android:paddingStart="10dp"
-                    android:singleLine="true"
-                    android:textSize="16sp" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/pilih_tanggal1"
+                android:id="@+id/inputLayout20"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@id/inputLayout3"
-                android:layout_margin="5dp"
-                android:text="Pilih Tanggal"
-                android:textColor="@color/white">
+                android:layout_margin="5dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tglBaptis1"
+                    android:id="@+id/jeniskelamin"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:clickable="false"
                     android:cursorVisible="false"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
-                    android:hint="Tanggal Baptis Dewasa/SIDI"
-                    android:paddingStart="10dp" />
+                    android:hint="Jenis Kelamin"
+                    android:textColor="@color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputLayout22"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/inputLayout20"
+                android:layout_margin="5dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/no_hp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:hint="Nomor Hp"
+                    android:textColor="@color/black" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputLayout4"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/pilih_tanggal1"
+                android:layout_height="match_parent"
+                android:layout_below="@id/inputLayout22"
                 android:layout_margin="5dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/alamat_csuami"
+                    android:id="@+id/alamat"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
                     android:hint="Alamat"
                     android:paddingStart="10dp"
+                    android:singleLine="true"
                     android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -181,16 +222,20 @@
                 android:id="@+id/inputLayout5"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_below="@id/inputLayout4"
                 android:layout_margin="5dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/nama_ortu_csuami"
+                    android:id="@+id/pendidikan"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Nama Orang Tua"
-                    android:maxLength="30"
+                    android:layout_height="match_parent"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:hint="Pendidikan"
+                    android:maxLength="5"
                     android:paddingStart="10dp"
                     android:singleLine="true"
                     android:textSize="16sp" />
@@ -200,15 +245,19 @@
                 android:id="@+id/inputLayout6"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_below="@id/inputLayout5"
                 android:layout_margin="5dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/agt_grj_csuami"
+                    android:id="@+id/pekerjaan"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Anggota Gereja"
+                    android:layout_height="match_parent"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:hint="Pekerjaan"
                     android:maxLength="15"
                     android:paddingStart="10dp"
                     android:singleLine="true"
@@ -224,11 +273,15 @@
                 android:layout_margin="5dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/klp_csuami"
+                    android:id="@+id/status_nikah"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Anggota Kelompok"
-                    android:maxLength="15"
+                    android:layout_height="match_parent"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:hint="Status Pernikahan"
+                    android:maxLength="30"
                     android:paddingStart="10dp"
                     android:singleLine="true"
                     android:textSize="16sp" />
@@ -238,130 +291,103 @@
                 android:id="@+id/inputLayout8"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_below="@id/inputLayout7"
                 android:layout_margin="5dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/saksi_csuami"
+                    android:id="@+id/nama_pasangan"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Saksi Pernikahan"
+                    android:layout_height="match_parent"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:hint="Nama Suami/Istri"
                     android:maxLength="30"
                     android:paddingStart="10dp"
                     android:singleLine="true"
                     android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
-
-            <TextView
-                android:id="@+id/data_cistri"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/inputLayout8"
-                android:layout_marginTop="16dp"
-                android:text="Data Calon Istri"
-                android:textColor="@color/black"
-                android:textSize="21sp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputLayout9"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/data_cistri"
+                android:layout_height="match_parent"
+                android:layout_below="@id/inputLayout8"
                 android:layout_margin="5dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/nama_cistri"
+                    android:id="@+id/pekerjaan_pasangan"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Nama Lengkap"
-                    android:maxLength="30"
-                    android:paddingStart="10dp"
-                    android:singleLine="true"
-                    android:textSize="16sp" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/inputLayout10"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/inputLayout9"
-                android:layout_margin="5dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tempat_lahir_cistri"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Tempat lahir"
+                    android:layout_height="match_parent"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:hint="Pekerjaan Suami/Istri"
                     android:maxLength="15"
                     android:paddingStart="10dp"
                     android:singleLine="true"
                     android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <TextView
+                android:id="@+id/dataOrtu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/inputLayout9"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="Data Orang Tua"
+                android:textColor="@color/black"
+                android:textSize="21sp" />
+
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/pilih_tanggal3"
+                android:id="@+id/inputLayout10"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/inputLayout10"
-                android:layout_margin="5dp"
-                android:text="Pilih Tanggal"
-                android:textColor="@color/white">
+                android:layout_height="match_parent"
+                android:layout_below="@id/dataOrtu"
+                android:layout_margin="5dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tglCistri"
+                    android:id="@+id/nama_ayah"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:clickable="false"
                     android:cursorVisible="false"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
-                    android:hint="Tanggal Lahir"
-                    android:paddingStart="10dp" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/inputLayout11"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/pilih_tanggal3"
-                android:layout_margin="5dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/agama_cistri"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Agama"
-                    android:maxLength="8"
+                    android:hint="Nama Ayah"
+                    android:maxLength="30"
                     android:paddingStart="10dp"
                     android:singleLine="true"
                     android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/pilih_tanggal4"
+                android:id="@+id/inputLayout11"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/inputLayout11"
-                android:layout_margin="5dp"
-                android:text="Pilih Tanggal"
-                android:textColor="@color/white">
+                android:layout_below="@id/inputLayout10"
+                android:layout_margin="5dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tglBaptis2"
+                    android:id="@+id/nama_ibu"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:clickable="false"
                     android:cursorVisible="false"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
-                    android:hint="Tanggal Baptis Dewasa/SIDI"
-                    android:paddingStart="10dp" />
+                    android:hint="Nama Ibu"
+                    android:maxLength="30"
+                    android:paddingStart="10dp"
+                    android:singleLine="true"
+                    android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -369,15 +395,20 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/pilih_tanggal4"
+                android:layout_below="@id/inputLayout11"
                 android:layout_margin="5dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/alamat_cistri"
+                    android:id="@+id/alamat_ortu"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
                     android:hint="Alamat"
                     android:paddingStart="10dp"
+                    android:singleLine="true"
                     android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -385,16 +416,20 @@
                 android:id="@+id/inputLayout13"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_below="@id/inputLayout12"
                 android:layout_margin="5dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/nama_ortu_cistri"
+                    android:id="@+id/pekerjaan_ortu"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Nama Orang Tua"
-                    android:maxLength="30"
+                    android:layout_height="match_parent"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:hint="Pekerjaan"
+                    android:maxLength="15"
                     android:paddingStart="10dp"
                     android:singleLine="true"
                     android:textSize="16sp" />
@@ -404,35 +439,54 @@
                 android:id="@+id/inputLayout14"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_below="@id/inputLayout13"
                 android:layout_margin="5dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/agt_grj_cistri"
+                    android:id="@+id/gereja_ortu"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Anggota Gereja"
-                    android:maxLength="15"
+                    android:layout_height="match_parent"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:hint="Kewargaan Gereja"
+                    android:maxLength="30"
                     android:paddingStart="10dp"
                     android:singleLine="true"
                     android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <TextView
+                android:id="@+id/dataGereja"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/inputLayout14"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="Data Kewargaan Gereja"
+                android:textColor="@color/black"
+                android:textSize="21sp" />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputLayout15"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/inputLayout14"
+                android:layout_height="match_parent"
+                android:layout_below="@id/dataGereja"
                 android:layout_margin="5dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/klp_cistri"
+                    android:id="@+id/gereja_asal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Anggota Kelompok"
-                    android:maxLength="15"
+                    android:layout_height="match_parent"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:hint="Nama Gereja Asal"
+                    android:maxLength="30"
                     android:paddingStart="10dp"
                     android:singleLine="true"
                     android:textSize="16sp" />
@@ -442,86 +496,77 @@
                 android:id="@+id/inputLayout16"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_below="@id/inputLayout15"
                 android:layout_margin="5dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/saksi_cistri"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Saksi Pernikahan"
-                    android:maxLength="30"
-                    android:paddingStart="10dp"
-                    android:singleLine="true"
-                    android:textSize="16sp" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/pilih_tanggal5"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/inputLayout16"
-                android:layout_margin="5dp"
-                android:text="Pilih Tanggal"
-                android:textColor="@color/white">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tglMenikah"
+                    android:id="@+id/alamat_gereja"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:clickable="false"
                     android:cursorVisible="false"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
-                    android:hint="Tanggal Menikah"
-                    android:paddingStart="10dp" />
+                    android:hint="Alamat Gereja"
+                    android:paddingStart="10dp"
+                    android:singleLine="true"
+                    android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputLayout17"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/pilih_tanggal5"
+                android:layout_height="match_parent"
+                android:layout_below="@id/inputLayout16"
                 android:layout_margin="5dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/jam_nikah"
+                    android:id="@+id/tgl_baptis"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Waktu Menikah"
-                    android:paddingStart="10dp"
-                    android:textSize="16sp" />
+                    android:layout_height="match_parent"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:hint="Tanggal Baptis Anak/Dewasa/Sidi"
+                    android:textColor="@color/black" />
             </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/dataAkun"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/inputLayout17"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="Email"
+                android:textColor="@color/black"
+                android:textSize="21sp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputLayout18"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/inputLayout17"
+                android:layout_height="match_parent"
+                android:layout_below="@id/dataAkun"
                 android:layout_margin="5dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tempat_nikah"
+                    android:id="@+id/email"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Tempat Menikah"
+                    android:layout_height="match_parent"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:hint="E-mail"
+                    android:maxLength="64"
                     android:paddingStart="10dp"
+                    android:singleLine="true"
                     android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
-
-            <Button
-                android:id="@+id/submit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/inputLayout18"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="16dp"
-                android:text="Daftar"
-                android:textColor="@color/white" />
         </RelativeLayout>
     </ScrollView>
 </LinearLayout>

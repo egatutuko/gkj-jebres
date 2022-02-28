@@ -1,7 +1,6 @@
 package id.egatutuko.gkjjebres.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import id.egatutuko.gkjjebres.R;
-import id.egatutuko.gkjjebres.activity.detail.Detail_Renungan;
 import id.egatutuko.gkjjebres.model.RenunganModel;
 
 public class RenunganAdapter extends RecyclerView.Adapter<RenunganAdapter.RecyclerViewHolder> {
@@ -23,7 +21,6 @@ public class RenunganAdapter extends RecyclerView.Adapter<RenunganAdapter.Recycl
     private List<RenunganModel> results;
     private Context context;
     private RecyclerViewClickListener listener;
-    //private ClickedItem clickedItem;
 
     public RenunganAdapter(Context context, List<RenunganModel> results, RecyclerViewClickListener listener){
         this.results = results;

@@ -1,19 +1,16 @@
 package id.egatutuko.gkjjebres.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.FragmentManager;
-
-import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -25,7 +22,7 @@ import id.egatutuko.gkjjebres.API.APIService;
 import id.egatutuko.gkjjebres.API.APIUtils;
 import id.egatutuko.gkjjebres.R;
 import id.egatutuko.gkjjebres.model.Value;
-import id.egatutuko.gkjjebres.utils.datepicker.DPFragmentPernikahan;
+import id.egatutuko.gkjjebres.utils.SessionManager;
 import id.egatutuko.gkjjebres.utils.datepicker.DPFragmentPranikah;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -35,13 +32,13 @@ public class Pra_nikah extends AppCompatActivity implements DPFragmentPranikah.D
 
     ProgressDialog progress;
     FragmentManager fm = getSupportFragmentManager();
-    private TextView dateTimeDisplay;
+    private TextView dateTimeDisplay,tvJK;
     private Calendar calendar;
     private SimpleDateFormat dateFormat;
     private String date,tgl_daftar,nama,umur,alamat,tempat_lahir,
             tgl_lahir,tgl_baptis_1,tempat_baptis_1,pembaptis,tgl_sidi,tempat_sidi,pend,
             pekerjaan,alamat_kerja,ket,nama_tunangan,agt_grj_tunangan,no_induk_tunangan,alamat_tunangan,
-            tgl_nikah,tempat_nikah,jam_nikah;
+            tgl_nikah,tempat_nikah,jam_nikah,jenkel;
     private TextInputEditText nm,Umur,almt,tempatlahir,
             tgllahir,tglbaptis1,tempatbaptis1,pemBaptis,tglsidi,tempatsidi,Pend,
             peKerjaan,alamatkerja,Ket,namatunangan,agtgrjtunangan,noinduktunangan,alamattunangan,
@@ -49,12 +46,15 @@ public class Pra_nikah extends AppCompatActivity implements DPFragmentPranikah.D
     private Button btDaftar;
     int DATE_DIALOG = 0;
     RadioGroup rgJK, rgStatus;
-    RadioButton rbJK, rbStatus;
+    RadioButton rbJK, rbStatus, rbL, rbP;
+    String dtNow = "";
+    SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pra_nikah);
+        sessionManager = new SessionManager(Pra_nikah.this);
 
         /**Toolbar*/
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -67,8 +67,9 @@ public class Pra_nikah extends AppCompatActivity implements DPFragmentPranikah.D
         /**Tgl daftar*/
         dateTimeDisplay = findViewById(R.id.textView);
         calendar = Calendar.getInstance();
-        dateFormat = new SimpleDateFormat ("dd MMM yyyy");
+        dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         date = dateFormat.format(calendar.getTime());
+        dtNow = date;
         dateTimeDisplay.setText(date);
 
         /**Binding*/
@@ -96,6 +97,24 @@ public class Pra_nikah extends AppCompatActivity implements DPFragmentPranikah.D
         btDaftar = findViewById(R.id.submit);
         rgJK = findViewById(R.id.rg1);
         rgStatus = findViewById(R.id.rg2);
+        rbL = findViewById(R.id.laki);
+        rbP = findViewById(R.id.perempuan);
+        tvJK = findViewById(R.id.tvJK);
+        jenkel = sessionManager.getUserDetail().get(SessionManager.JENIS_KELAMIN);
+        tvJK.setText(jenkel);
+
+        nm.setText(sessionManager.getUserDetail().get(SessionManager.NAMA));
+        if(tvJK.getText().equals("L")){
+            rbL.setChecked(true);
+        } else {
+            rbP.setChecked(true);
+        }
+        almt.setText(sessionManager.getUserDetail().get(SessionManager.ALAMAT));
+        tempatlahir.setText(sessionManager.getUserDetail().get(SessionManager.TEMPAT_LAHIR));
+        tgllahir.setText(sessionManager.getUserDetail().get(SessionManager.TANGGAL_LAHIR));
+        Pend.setText(sessionManager.getUserDetail().get(SessionManager.PENDIDIKAN));
+        peKerjaan.setText(sessionManager.getUserDetail().get(SessionManager.PEKERJAAN));
+
 
         /**Onclick listener*/
         tgllahir.setOnClickListener(v -> {
@@ -137,7 +156,7 @@ public class Pra_nikah extends AppCompatActivity implements DPFragmentPranikah.D
         progress.show();
 
         /**Ambil data*/
-        tgl_daftar = dateTimeDisplay.getText().toString();
+        tgl_daftar = dtNow;
         nama = nm.getText().toString();
         umur = Umur.getText().toString();
         alamat = almt.getText().toString();

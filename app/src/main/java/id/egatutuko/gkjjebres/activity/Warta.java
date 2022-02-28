@@ -1,11 +1,11 @@
 package id.egatutuko.gkjjebres.activity;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.os.Bundle;
 
 import java.util.ArrayList;
 
@@ -22,7 +22,7 @@ public class Warta extends AppCompatActivity {
 
         ArrayList<RecyclerDataWartaJemaat> dataList = new ArrayList<>();
         dataList.add(new RecyclerDataWartaJemaat(R.drawable.ic_logo_gkj,"Warta Jemaat","23 Januari 2022"));
-        dataList.add(new RecyclerDataWartaJemaat(R.drawable.ic_logo_gkj,"Warta Jemaat","3 Desember 2021"));
+        dataList.add(new RecyclerDataWartaJemaat(R.drawable.ic_logo_gkj,"Warta Jemaat","5 Desember 2021"));
         dataList.add(new RecyclerDataWartaJemaat(R.drawable.ic_logo_gkj,"Warta Jemaat","28 November 2021"));
         dataList.add(new RecyclerDataWartaJemaat(R.drawable.ic_logo_gkj,"Warta Jemaat","31 Oktober 2021"));
         dataList.add(new RecyclerDataWartaJemaat(R.drawable.ic_logo_gkj,"Warta Jemaat","27 Juni 2021"));

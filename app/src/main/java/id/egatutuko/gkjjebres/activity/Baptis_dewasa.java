@@ -1,9 +1,5 @@
 package id.egatutuko.gkjjebres.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.FragmentManager;
-
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.View;
@@ -16,8 +12,11 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
+
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -27,6 +26,7 @@ import id.egatutuko.gkjjebres.API.APIService;
 import id.egatutuko.gkjjebres.API.APIUtils;
 import id.egatutuko.gkjjebres.R;
 import id.egatutuko.gkjjebres.model.Value;
+import id.egatutuko.gkjjebres.utils.SessionManager;
 import id.egatutuko.gkjjebres.utils.datepicker.DPFragmentBaptisDewasa;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -39,36 +39,47 @@ public class Baptis_dewasa extends AppCompatActivity implements DPFragmentBaptis
     private TextInputEditText tglLahir, tglBaptis1, tglBaptis, tglNikah, tglTunangan, nmlengkap, alamat, tmpLahir, tmpBaptis1, pemBaptis,
                               kerja, almtKerja, ketLain, nmAyah, agtGrjAyah, noIndukAyah, nmIbu, agtGrjIbu, noIndukIbu, almtOrtu, nmTunangan, agtGrjTunangan,
                               nmPasangan, agtGrjPasangan, noIndukPasangan, jmlAnak, jmlAsuhan, nmPengajar, lamaKat, tmpKat, tmpBaptis, jamBaptis,
-                              noIndukTunangan, almtTunangan, sekolah;
-    private TextView dateTimeDisplay;
+                              noIndukTunangan, almtTunangan, sekolah, no_hp;
+    private TextView dateTimeDisplay, tvJK;
     private Calendar calendar;
     private SimpleDateFormat dateFormat;
     private String date;
     private FragmentManager fm = getSupportFragmentManager();
     int DATE_DIALOG = 0;
-    private RadioGroup rgJK, rgAyah, rgIbu, rgTunangan, rgPasangan, rgBaptis;
-    private RadioButton rbJK, rbAyah, rbIbu, rbTunangan, rbPasangan, rbBaptis;
+    private RadioGroup rgJK, rgAyah, rgIbu, rgTunangan, rgPasangan, rgBaptis, rgCTunangan, rgCPasangan;
+    private RadioButton rbJK, rbAyah, rbIbu, rbTunangan, rbPasangan, rbBaptis, rbL, rbP, rbStunangan, rbBtunangan, rbBnikah, rbSnikah,
+                        rbKtunangan, rbBKtunangan, rbKpasangan, rbBKpasangan;
     private Button btDaftar;
     private String tgl_daftar, tgl_lahir, tgl_baptis_1, tgl_nikah, tgl_bertunangan, tgl_baptis, nm_lengkap, almt, tmpt_lahir, tempat_baptis_1, pembaptis, pekerjaan, almt_kerja,
                    ket, nm_ayah, agt_grj_ayah, no_induk_ayah, nm_ibu, agt_grj_ibu, no_induk_ibu, almt_ortu, nm_tunangan, agt_grj_tunangan, nm_pasangan, agt_grj_pasangan, no_induk_pasangan,
                    jml_anak, anak_dlm_asuhan, pengajar_katekisasi, lama_katekisasi, tempat_katekisasi, tempat_baptis, jam_baptis, no_induk_tunangan,
-                   almt_tunangan, pend, ket_nikah, prosesi_nikah, prosesnikah, ketpasang;
+                   almt_tunangan, pend, ket_nikah, prosesi_nikah, prosesnikah, ketpasang, jenkel, nohp;
     String[] option = {"Kristen","Katolik","Islam","Hindu","Budha","Adat","Lainnya"};
     String[] option1 = {"Masih","Cerai","Meninggal"};
     ArrayAdapter<String> arrayAdapter;
     ArrayAdapter<String> arrayAdapter1;
+    String dtNow = "";
+    SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_baptis_dewasa);
+        sessionManager = new SessionManager(Baptis_dewasa.this);
+        /**Toolbar*/
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_32);
 
         /**Binding*/
         tglLahir = findViewById(R.id.tanggal_lahir);
         tglBaptis1 = findViewById(R.id.tanggal_baptis1);
         tglNikah = findViewById(R.id.tanggal_nikah);
         tglTunangan = findViewById(R.id.tanggal_tunangan);
-        tglBaptis = findViewById(R.id.tanggal_baptis);
+        //tglBaptis = findViewById(R.id.tanggal_baptis);
         nmlengkap = findViewById(R.id.nama);
         alamat = findViewById(R.id.alamat);
         tmpLahir = findViewById(R.id.tempat_lahir);
@@ -97,8 +108,8 @@ public class Baptis_dewasa extends AppCompatActivity implements DPFragmentBaptis
         nmPengajar = findViewById(R.id.nama_pengajar);
         lamaKat = findViewById(R.id.lama_katekisasi);
         tmpKat = findViewById(R.id.tempat_katekisasi);
-        tmpBaptis = findViewById(R.id.tempat_baptis1);
-        jamBaptis = findViewById(R.id.jam_baptis);
+        //tmpBaptis = findViewById(R.id.tempat_baptis1);
+        //jamBaptis = findViewById(R.id.jam_baptis);
         btDaftar = findViewById(R.id.submit);
         rgJK = findViewById(R.id.rg1);
         rgAyah = findViewById(R.id.rg2);
@@ -106,22 +117,170 @@ public class Baptis_dewasa extends AppCompatActivity implements DPFragmentBaptis
         rgTunangan = findViewById(R.id.rg4);
         rgPasangan = findViewById(R.id.rg5);
         rgBaptis = findViewById(R.id.rg6);
+        rbL = findViewById(R.id.laki);
+        rbP = findViewById(R.id.perempuan);
+        tvJK = findViewById(R.id.tvJK);
+        no_hp = findViewById(R.id.nohp);
+        rbBtunangan = findViewById(R.id.btunangan);
+        rbStunangan = findViewById(R.id.stunangan);
+        rbSnikah = findViewById(R.id.snikah);
+        rbBnikah = findViewById(R.id.bnikah);
+        rgCTunangan = findViewById(R.id.rgTunangan);
+        rgCPasangan = findViewById(R.id.rgNikah);
+        rbKtunangan = findViewById(R.id.kristen2);
+        rbBKtunangan = findViewById(R.id.belum2);
+        rbKpasangan = findViewById(R.id.kristen3);
+        rbBKpasangan = findViewById(R.id.belum3);
+        jenkel = sessionManager.getUserDetail().get(SessionManager.JENIS_KELAMIN);
+        tvJK.setText(jenkel);
 
+        nmlengkap.setText(sessionManager.getUserDetail().get(SessionManager.NAMA));
+        if(tvJK.getText().equals("L")){
+            rbL.setChecked(true);
+        } else {
+            rbP.setChecked(true);
+        }
+        alamat.setText(sessionManager.getUserDetail().get(SessionManager.ALAMAT));
+        tglLahir.setText(sessionManager.getUserDetail().get(SessionManager.TANGGAL_LAHIR));
+        tmpLahir.setText(sessionManager.getUserDetail().get(SessionManager.TEMPAT_LAHIR));
+        no_hp.setText(sessionManager.getUserDetail().get(SessionManager.NO_HP));
+        sekolah.setText(sessionManager.getUserDetail().get(SessionManager.PENDIDIKAN));
+        kerja.setText(sessionManager.getUserDetail().get(SessionManager.PEKERJAAN));
+        nmAyah.setText(sessionManager.getUserDetail().get(SessionManager.NAMA_AYAH));
+        nmIbu.setText(sessionManager.getUserDetail().get(SessionManager.NAMA_IBU));
+        almtOrtu.setText(sessionManager.getUserDetail().get(SessionManager.ALAMAT_ORTU));
+        //cekTunangan();
+        //cekPasangan();
 
-        /**Toolbar*/
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_32);
+        rgCTunangan.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId){
+                    case R.id.btunangan:
+                        nmTunangan.setEnabled(false);
+                        nmTunangan.setFocusable(false);
+                        rgTunangan.setEnabled(false);
+                        rgTunangan.setFocusable(false);
+                        agtGrjTunangan.setEnabled(false);
+                        agtGrjTunangan.setFocusable(false);
+                        noIndukTunangan.setEnabled(false);
+                        noIndukTunangan.setFocusable(false);
+                        almtTunangan.setEnabled(false);
+                        almtTunangan.setFocusable(false);
+                        tglTunangan.setEnabled(false);
+                        tglTunangan.setFocusable(false);
+                        rbKtunangan.setEnabled(false);
+                        rbKtunangan.setFocusable(false);
+                        rbBKtunangan.setEnabled(false);
+                        rbBKtunangan.setFocusable(false);
+                        break;
+                    case R.id.stunangan:
+                        nmTunangan.setEnabled(true);
+                        nmTunangan.setFocusable(true);
+                        rgTunangan.setEnabled(true);
+                        rgTunangan.setFocusable(true);
+                        agtGrjTunangan.setEnabled(true);
+                        agtGrjTunangan.setFocusable(true);
+                        noIndukTunangan.setEnabled(true);
+                        noIndukTunangan.setFocusable(true);
+                        almtTunangan.setEnabled(true);
+                        almtTunangan.setFocusable(true);
+                        tglTunangan.setEnabled(true);
+                        tglTunangan.setFocusable(true);
+                        rbKtunangan.setEnabled(true);
+                        rbKtunangan.setFocusable(true);
+                        rbBKtunangan.setEnabled(true);
+                        rbBKtunangan.setFocusable(true);
+                        break;
+                    default:
+                        nmTunangan.setEnabled(false);
+                        nmTunangan.setFocusable(false);
+                        rgTunangan.setEnabled(false);
+                        rgTunangan.setFocusable(false);
+                        agtGrjTunangan.setEnabled(false);
+                        agtGrjTunangan.setFocusable(false);
+                        noIndukTunangan.setEnabled(false);
+                        noIndukTunangan.setFocusable(false);
+                        almtTunangan.setEnabled(false);
+                        almtTunangan.setFocusable(false);
+                        tglTunangan.setEnabled(false);
+                        tglTunangan.setFocusable(false);
+                        rbKtunangan.setEnabled(false);
+                        rbKtunangan.setFocusable(false);
+                        rbBKtunangan.setEnabled(false);
+                        rbBKtunangan.setFocusable(false);
+                        break;
+                }
+            }
+        });
+
+        rgCPasangan.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId){
+                    case R.id.bnikah:
+                        nmPasangan.setEnabled(false);
+                        nmPasangan.setFocusable(false);
+                        rgPasangan.setEnabled(false);
+                        rgPasangan.setFocusable(false);
+                        agtGrjPasangan.setEnabled(false);
+                        agtGrjPasangan.setFocusable(false);
+                        noIndukPasangan.setEnabled(false);
+                        noIndukPasangan.setFocusable(false);
+                        jmlAnak.setEnabled(false);
+                        jmlAnak.setFocusable(false);
+                        jmlAsuhan.setEnabled(false);
+                        jmlAsuhan.setFocusable(false);
+                        rbKpasangan.setEnabled(false);
+                        rbKpasangan.setFocusable(false);
+                        rbBKpasangan.setEnabled(false);
+                        rbBKpasangan.setFocusable(false);
+                        break;
+                    case R.id.snikah:
+                        nmPasangan.setEnabled(true);
+                        nmPasangan.setFocusable(true);
+                        rgPasangan.setEnabled(true);
+                        rgPasangan.setFocusable(true);
+                        agtGrjPasangan.setEnabled(true);
+                        agtGrjPasangan.setFocusable(true);
+                        noIndukPasangan.setEnabled(true);
+                        noIndukPasangan.setFocusable(true);
+                        jmlAnak.setEnabled(true);
+                        jmlAnak.setFocusable(true);
+                        jmlAsuhan.setEnabled(true);
+                        jmlAsuhan.setFocusable(true);
+                        rbKpasangan.setEnabled(true);
+                        rbKpasangan.setFocusable(true);
+                        rbBKpasangan.setEnabled(true);
+                        rbBKpasangan.setFocusable(true);
+                        break;
+                    default:
+                        nmPasangan.setEnabled(false);
+                        nmPasangan.setFocusable(false);
+                        rgPasangan.setEnabled(false);
+                        rgPasangan.setFocusable(false);
+                        agtGrjPasangan.setEnabled(false);
+                        agtGrjPasangan.setFocusable(false);
+                        noIndukPasangan.setEnabled(false);
+                        noIndukPasangan.setFocusable(false);
+                        jmlAnak.setEnabled(false);
+                        jmlAnak.setFocusable(false);
+                        jmlAsuhan.setEnabled(false);
+                        jmlAsuhan.setFocusable(false);
+                        rbKpasangan.setEnabled(false);
+                        rbKpasangan.setFocusable(false);
+                        rbBKpasangan.setEnabled(false);
+                        rbBKpasangan.setFocusable(false);
+                        break;
+                }
+            }
+        });
 
         /**AutoCompleteTextView*/
         prosnikah = findViewById(R.id.prosesi_nikah);
         ketpas = findViewById(R.id.keterangan_pasangan);
 
         /**AutoComplete Prosesi Nikah*/
-
         arrayAdapter = new ArrayAdapter<String>(this, R.layout.dropdown_item_nikah, option);
         prosnikah.setAdapter(arrayAdapter);
 
@@ -190,8 +349,9 @@ public class Baptis_dewasa extends AppCompatActivity implements DPFragmentBaptis
         /**Setting tanggal daftar (hari ini)*/
         dateTimeDisplay = findViewById(R.id.textView);
         calendar = Calendar.getInstance();
-        dateFormat = new SimpleDateFormat("dd MMM yyyy");
+        dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         date = dateFormat.format(calendar.getTime());
+        dtNow = date;
         dateTimeDisplay.setText(date);
 
         /**clicklistener*/
@@ -211,10 +371,10 @@ public class Baptis_dewasa extends AppCompatActivity implements DPFragmentBaptis
             openDialog();
             DATE_DIALOG = 3;
         });
-        tglBaptis.setOnClickListener(v -> {
+        /**tglBaptis.setOnClickListener(v -> {
             openDialog();
             DATE_DIALOG = 4;
-        });
+        });*/
         btDaftar.setOnClickListener(v -> {
 
             int selectedJK = rgJK.getCheckedRadioButtonId();
@@ -282,7 +442,7 @@ public class Baptis_dewasa extends AppCompatActivity implements DPFragmentBaptis
         progress.show();
 
         /**Ambil data edit text*/
-        tgl_daftar = dateTimeDisplay.getText().toString();
+        tgl_daftar = dtNow;
         tgl_lahir = tglLahir.getText().toString();
         tgl_baptis_1 = tglBaptis1.getText().toString();
         tgl_nikah = tglNikah.getText().toString();
@@ -372,5 +532,160 @@ public class Baptis_dewasa extends AppCompatActivity implements DPFragmentBaptis
             }
         });
 
+    }
+
+    private void cekTunangan(){
+        /**int selectTunangan = rgCTunangan.getCheckedRadioButtonId();
+        rbBtunangan = findViewById(selectTunangan);
+        switch (selectTunangan){
+            case 0:
+                nmTunangan.setEnabled(true);
+                nmTunangan.setFocusable(true);
+                rgTunangan.setEnabled(true);
+                rgTunangan.setFocusable(true);
+                agtGrjTunangan.setEnabled(true);
+                agtGrjTunangan.setFocusable(true);
+                noIndukTunangan.setEnabled(true);
+                noIndukTunangan.setFocusable(true);
+                almtTunangan.setEnabled(true);
+                almtTunangan.setFocusable(true);
+                tglTunangan.setEnabled(true);
+                tglTunangan.setFocusable(true);
+                rbKtunangan.setEnabled(true);
+                rbKtunangan.setFocusable(true);
+                rbBKtunangan.setEnabled(true);
+                rbBKtunangan.setFocusable(true);
+                break;
+            case 1:
+                nmTunangan.setEnabled(false);
+                nmTunangan.setFocusable(false);
+                rgTunangan.setEnabled(false);
+                rgTunangan.setFocusable(false);
+                agtGrjTunangan.setEnabled(false);
+                agtGrjTunangan.setFocusable(false);
+                noIndukTunangan.setEnabled(false);
+                noIndukTunangan.setFocusable(false);
+                almtTunangan.setEnabled(false);
+                almtTunangan.setFocusable(false);
+                tglTunangan.setEnabled(false);
+                tglTunangan.setFocusable(false);
+                rbKtunangan.setEnabled(false);
+                rbKtunangan.setFocusable(false);
+                rbBKtunangan.setEnabled(false);
+                rbBKtunangan.setFocusable(false);
+                break;
+        }*/
+        if(rbBnikah.isChecked()){
+            nmTunangan.setEnabled(false);
+            nmTunangan.setFocusable(false);
+            rgTunangan.setEnabled(false);
+            rgTunangan.setFocusable(false);
+            agtGrjTunangan.setEnabled(false);
+            agtGrjTunangan.setFocusable(false);
+            noIndukTunangan.setEnabled(false);
+            noIndukTunangan.setFocusable(false);
+            almtTunangan.setEnabled(false);
+            almtTunangan.setFocusable(false);
+            tglTunangan.setEnabled(false);
+            tglTunangan.setFocusable(false);
+            rbKtunangan.setEnabled(false);
+            rbKtunangan.setFocusable(false);
+            rbBKtunangan.setEnabled(false);
+            rbBKtunangan.setFocusable(false);
+        } else if(rbSnikah.isChecked()){
+            nmTunangan.setEnabled(true);
+            nmTunangan.setFocusable(true);
+            rgTunangan.setEnabled(true);
+            rgTunangan.setFocusable(true);
+            agtGrjTunangan.setEnabled(true);
+            agtGrjTunangan.setFocusable(true);
+            noIndukTunangan.setEnabled(true);
+            noIndukTunangan.setFocusable(true);
+            almtTunangan.setEnabled(true);
+            almtTunangan.setFocusable(true);
+            tglTunangan.setEnabled(true);
+            tglTunangan.setFocusable(true);
+            rbKtunangan.setEnabled(true);
+            rbKtunangan.setFocusable(true);
+            rbBKtunangan.setEnabled(true);
+            rbBKtunangan.setFocusable(true);
+        }
+    }
+
+    private void cekPasangan(){
+        /**int selectNikah = rgCPasangan.getCheckedRadioButtonId();
+        switch (selectNikah){
+            case 0:
+                nmPasangan.setEnabled(true);
+                nmPasangan.setFocusable(true);
+                rgPasangan.setEnabled(true);
+                rgPasangan.setFocusable(true);
+                agtGrjPasangan.setEnabled(true);
+                agtGrjPasangan.setFocusable(true);
+                noIndukPasangan.setEnabled(true);
+                noIndukPasangan.setFocusable(true);
+                jmlAnak.setEnabled(true);
+                jmlAnak.setFocusable(true);
+                jmlAsuhan.setEnabled(true);
+                jmlAsuhan.setFocusable(true);
+                rbKpasangan.setEnabled(true);
+                rbKpasangan.setFocusable(true);
+                rbBKpasangan.setEnabled(true);
+                rbBKpasangan.setFocusable(true);
+                break;
+            case 1:
+                nmPasangan.setEnabled(false);
+                nmPasangan.setFocusable(false);
+                rgPasangan.setEnabled(false);
+                rgPasangan.setFocusable(false);
+                agtGrjPasangan.setEnabled(false);
+                agtGrjPasangan.setFocusable(false);
+                noIndukPasangan.setEnabled(false);
+                noIndukPasangan.setFocusable(false);
+                jmlAnak.setEnabled(false);
+                jmlAnak.setFocusable(false);
+                jmlAsuhan.setEnabled(false);
+                jmlAsuhan.setFocusable(false);
+                rbKpasangan.setEnabled(false);
+                rbKpasangan.setFocusable(false);
+                rbBKpasangan.setEnabled(false);
+                rbBKpasangan.setFocusable(false);
+                break;
+        }*/
+        if(rbBnikah.isChecked()){
+            nmPasangan.setEnabled(false);
+            nmPasangan.setFocusable(false);
+            rgPasangan.setEnabled(false);
+            rgPasangan.setFocusable(false);
+            agtGrjPasangan.setEnabled(false);
+            agtGrjPasangan.setFocusable(false);
+            noIndukPasangan.setEnabled(false);
+            noIndukPasangan.setFocusable(false);
+            jmlAnak.setEnabled(false);
+            jmlAnak.setFocusable(false);
+            jmlAsuhan.setEnabled(false);
+            jmlAsuhan.setFocusable(false);
+            rbKpasangan.setEnabled(false);
+            rbKpasangan.setFocusable(false);
+            rbBKpasangan.setEnabled(false);
+            rbBKpasangan.setFocusable(false);
+        } else if(rbSnikah.isChecked()){
+            nmPasangan.setEnabled(true);
+            nmPasangan.setFocusable(true);
+            rgPasangan.setEnabled(true);
+            rgPasangan.setFocusable(true);
+            agtGrjPasangan.setEnabled(true);
+            agtGrjPasangan.setFocusable(true);
+            noIndukPasangan.setEnabled(true);
+            noIndukPasangan.setFocusable(true);
+            jmlAnak.setEnabled(true);
+            jmlAnak.setFocusable(true);
+            jmlAsuhan.setEnabled(true);
+            jmlAsuhan.setFocusable(true);
+            rbKpasangan.setEnabled(true);
+            rbKpasangan.setFocusable(true);
+            rbBKpasangan.setEnabled(true);
+            rbBKpasangan.setFocusable(true);
+        }
     }
 }

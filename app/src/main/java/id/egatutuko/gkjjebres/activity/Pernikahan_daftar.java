@@ -1,17 +1,14 @@
 package id.egatutuko.gkjjebres.activity;
 
+import android.app.ProgressDialog;
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
-
-import android.app.DatePickerDialog;
-import android.app.ProgressDialog;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -23,7 +20,7 @@ import id.egatutuko.gkjjebres.API.APIService;
 import id.egatutuko.gkjjebres.API.APIUtils;
 import id.egatutuko.gkjjebres.R;
 import id.egatutuko.gkjjebres.model.Value;
-import id.egatutuko.gkjjebres.utils.datepicker.DPFragmentBaptisAnak;
+import id.egatutuko.gkjjebres.utils.SessionManager;
 import id.egatutuko.gkjjebres.utils.datepicker.DPFragmentPernikahan;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,13 +30,13 @@ public class Pernikahan_daftar extends AppCompatActivity implements DPFragmentPe
 
     ProgressDialog progress;
     FragmentManager fm = getSupportFragmentManager();
-    private TextView dateTimeDisplay;
+    private TextView dateTimeDisplay, tvJK;
     private Calendar calendar;
     private SimpleDateFormat dateFormat;
     private String date, tgl_daftar, nama_csuami, tempat_lahir_csuami, tgl_lahir_csuami, agama_csuami, tgl_baptis_csuami,
                    alamat_csuami, nama_ortu_csuami, agt_grj_csuami, klp_csuami, saksi_csuami, nama_cistri, tempat_lahir_cistri,
                    tgl_lahir_cistri, agama_cistri, tgl_baptis_cistri, alamat_cistri, nama_ortu_cistri, agt_grj_cistri, klp_cistri, saksi_cistri,
-                   tgl_nikah, jam_nikah, tempat_nikah;
+                   tgl_nikah, jam_nikah, tempat_nikah, jenkel;
     private TextInputEditText tglcsuami, tglbaptis1, tglcistri, tglbaptis2, tglmenikah,
                               nmcsuami,tmplahircsuami,agamacsuami,
                               alamatcsuami,namaortucsuami,agtgrjcsuami,klpcsuami,saksicsuami,namacistri,tempatlahircistri,
@@ -47,10 +44,13 @@ public class Pernikahan_daftar extends AppCompatActivity implements DPFragmentPe
                               jamnikah,tempatnikah;
     int DATE_DIALOG = 0;
     private Button btDaftar;
+    String dtNow = "";
+    SessionManager sessionManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pernikahan_daftar);
+        sessionManager = new SessionManager(Pernikahan_daftar.this);
 
         /**Toolbar*/
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -63,8 +63,9 @@ public class Pernikahan_daftar extends AppCompatActivity implements DPFragmentPe
         /**Tgl Daftar*/
         dateTimeDisplay = findViewById(R.id.textView);
         calendar = Calendar.getInstance();
-        dateFormat = new SimpleDateFormat ("dd MMM yyyy");
+        dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         date = dateFormat.format(calendar.getTime());
+        dtNow = date;
         dateTimeDisplay.setText(date);
 
         /**Binding*/
@@ -92,6 +93,25 @@ public class Pernikahan_daftar extends AppCompatActivity implements DPFragmentPe
         saksicistri = findViewById(R.id.saksi_cistri);
         jamnikah = findViewById(R.id.jam_nikah);
         tempatnikah = findViewById(R.id.tempat_nikah);
+        tvJK = findViewById(R.id.jenkel);
+        jenkel = sessionManager.getUserDetail().get(SessionManager.JENIS_KELAMIN);
+        tvJK.setText(jenkel);
+
+        if(tvJK.getText().equals("L")){
+            nmcsuami.setText(sessionManager.getUserDetail().get(SessionManager.NAMA));
+            tmplahircsuami.setText(sessionManager.getUserDetail().get(SessionManager.TEMPAT_LAHIR));
+            tglcsuami.setText(sessionManager.getUserDetail().get(SessionManager.TANGGAL_LAHIR));
+            agamacsuami.setText("Kristen");
+            alamatcsuami.setText(sessionManager.getUserDetail().get(SessionManager.ALAMAT));
+            namaortucsuami.setText(sessionManager.getUserDetail().get(SessionManager.NAMA_AYAH));
+        } else {
+            namacistri.setText(sessionManager.getUserDetail().get(SessionManager.NAMA));
+            tempatlahircistri.setText(sessionManager.getUserDetail().get(SessionManager.TEMPAT_LAHIR));
+            tglcistri.setText(sessionManager.getUserDetail().get(SessionManager.TANGGAL_LAHIR));
+            agamacistri.setText("Kristen");
+            alamatcistri.setText(sessionManager.getUserDetail().get(SessionManager.ALAMAT));
+            namaortucistri.setText(sessionManager.getUserDetail().get(SessionManager.NAMA_AYAH));
+        }
 
         /**Click Listener*/
         tglcsuami.setOnClickListener(v -> {
@@ -176,7 +196,7 @@ public class Pernikahan_daftar extends AppCompatActivity implements DPFragmentPe
         progress.show();
 
         /**Ambil data edittext*/
-        tgl_daftar = dateTimeDisplay.getText().toString();
+        tgl_daftar = dtNow;
         nama_csuami = nmcsuami.getText().toString();
         tempat_lahir_csuami = tmplahircsuami.getText().toString();
         tgl_lahir_csuami = tglcsuami.getText().toString();

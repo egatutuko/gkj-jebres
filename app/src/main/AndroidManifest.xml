@@ -2,9 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="id.egatutuko.gkjjebres">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -14,29 +15,42 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GKJJebres">
         <activity
+            android:name=".activity.Login"
+            android:exported="false"
+            android:parentActivityName=".activity.Home" />
+        <activity
+            android:name=".activity.Profil"
+            android:exported="false"
+            android:parentActivityName=".activity.Home"/>
+        <activity
+            android:name=".activity.Register"
+            android:exported="false"
+            android:parentActivityName=".activity.Login"/>
+        <activity
+            android:name=".activity.Home"
+            android:exported="false" />
+        <activity
+            android:name=".activity.detail.Detail_Warta"
+            android:exported="false" />
+        <activity
             android:name=".activity.Pernikahan_daftar"
             android:exported="false"
-            android:parentActivityName=".activity.Pernikahan">
-        </activity>
+            android:parentActivityName=".activity.Home" />
         <activity
             android:name=".activity.Pra_nikah"
             android:exported="false"
-            android:parentActivityName=".activity.Pernikahan">
-        </activity>
+            android:parentActivityName=".activity.Home" />
         <activity
             android:name=".activity.Baptis_anak"
             android:exported="false"
-            android:parentActivityName=".activity.Baptis">
-        </activity>
+            android:parentActivityName=".activity.Home" />
         <activity
             android:name=".activity.Baptis_dewasa"
             android:exported="false"
-            android:parentActivityName=".activity.Baptis">
-        </activity>
+            android:parentActivityName=".activity.Home" />
         <activity
             android:name=".activity.Katekisasi"
-            android:parentActivityName=".activity.MainActivity">
-        </activity>
+            android:parentActivityName=".activity.Home" />
         <activity
             android:name=".activity.detail.Detail_Renungan"
             android:parentActivityName=".activity.Renungan" />
@@ -45,33 +59,28 @@
             android:parentActivityName=".activity.MainActivity" />
         <activity
             android:name=".activity.Pernikahan"
-            android:parentActivityName=".activity.MainActivity">
-        </activity>
+            android:parentActivityName=".activity.MainActivity" />
         <activity
             android:name=".activity.Baptis"
-            android:parentActivityName=".activity.MainActivity">
-        </activity>
+            android:parentActivityName=".activity.Home" />
         <activity
             android:name=".activity.Info"
-            android:parentActivityName=".activity.MainActivity">
-        </activity>
+            android:parentActivityName=".activity.MainActivity" />
         <activity
             android:name=".activity.Renungan"
-            android:parentActivityName=".activity.MainActivity">
-        </activity>
+            android:parentActivityName=".activity.MainActivity" />
         <activity
             android:name=".activity.VideoIbadah"
-            android:parentActivityName=".activity.MainActivity">
-        </activity>
+            android:parentActivityName=".activity.MainActivity" />
         <activity
             android:name=".activity.Warta"
-            android:parentActivityName=".activity.MainActivity">
-        </activity>
+            android:parentActivityName=".activity.MainActivity" />
         <activity
             android:name=".activity.Jadwal"
-            android:parentActivityName=".activity.MainActivity">
-        </activity>
-        <activity android:name=".activity.MainActivity" android:exported="true">
+            android:parentActivityName=".activity.MainActivity" />
+        <activity
+            android:name=".activity.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -23,7 +23,7 @@
     <string name="gkj_jebres1">GKJ Jebres</string>
     <string name="profil">GKJ Jebres merupakan gereja yang tergabung dalam klasis Sala. Gereja ini didewasakan dari gereja induk GKJ Margoyudan pada tgl 28 Oktober 2002, beralamatkan di Jl. Pracanda 1 Kandangsapi, Surakarta, dengan satu wilayah pelayanannya kelurahan Jebres</string>
     <string name="isi_sejarah">Pada tahun 1948-an di daerah Kandangsapi Surakarta tumbuh sebuah komunitas Kristen yang bernaung di GKJ Margoyudan. Komunitas Kristen itu pada 1986 - 1987 beribadah menumpang di rumah keluarga Bapak Suradi RT 02 / RW 32 seorang pensiunan ABRI.
-    Pada tanggal 5 April 1987 Kelompok Kebaktian Jebres diresmikan dalam kebaktian perdana yang dilayankan oleh Pendeta Suwardi, S.Th. Pada 1988 - 2001 berproses mengajukan diri dari kelompok kebaktian menjadi pepanthan ke GKJ Margoyudan dan pada tanggal 7 Februari 1993 diresmikan menjadi Pepanthan.
+    Pada tanggal 5 April 1987 Kelompok Kebaktian Jebres diresmikan dalam kebaktian perdana yang dilayankan oleh Pendeta Suwardi, S.Th. Pada Tahun 1988 - 2001 berproses mengajukan diri dari kelompok kebaktian menjadi pepanthan ke GKJ Margoyudan dan pada tanggal 7 Februari 1993 diresmikan menjadi Pepanthan.
     GKJ Jebres didewasakan oleh GKJ Jebres melakukan pemanggilan calon pendeta atas diri Sdr. Suwarto, S.Si dan setelah melewati pemilihan, pembimbingan, Ujian dan Vikariat ditahbiskan dan diteguhkan sebagai pendeta GKJ Jebres pada tanggal 28 Oktober 2006.
     </string>
     <string name="sejarah">Sejarah GKJ Jebres</string>
@@ -47,6 +47,12 @@
         <item>Masih</item>
         <item>Cerai</item>
         <item>Meninggal</item>
+    </string-array>
+    <string-array name="snikah">
+        <item>Belum Menikah</item>
+        <item>Menikah</item>
+        <item>Janda</item>
+        <item>Duda</item>
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

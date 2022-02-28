@@ -1,5 +1,6 @@
 package id.egatutuko.gkjjebres.API;
 
+import id.egatutuko.gkjjebres.model.LoginModel;
 import id.egatutuko.gkjjebres.model.Value;
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -16,11 +17,13 @@ public interface APIService {
                @Field("nm_ayah") String nm_ayah,
                @Field("agt_grj_ayah") String agt_grj_ayah,
                @Field("almt_ayah") String almt_ayah,
+               @Field("nohp_a") String nohp_a,
                @Field("no_induk_ayah") String no_induk_ayah,
                @Field("agt_klp_ayah") String agt_klp_ayah,
                @Field("nm_ibu") String nm_ibu,
                @Field("agt_grj_ibu") String agt_grj_ibu,
                @Field("almt_ibu") String almt_ibu,
+               @Field("nohp_i") String nohp_i,
                @Field("no_induk_ibu") String no_induk_ibu,
                @Field("agt_klp_ibu") String agt_klp_ibu,
                @Field("nm_anak") String nm_anak,
@@ -30,10 +33,7 @@ public interface APIService {
                @Field("no_akta") String no_akta,
                @Field("file_akta") String file_akta,
                @Field("status_sipil") String status_sipil,
-               @Field("tgl_lapor") String tgl_lapor,
-               @Field("tgl_baptis") String tgl_baptis,
-               @Field("tempat_baptis") String tempat_baptis,
-               @Field("jam_baptis") String jam_baptis);
+               @Field("tgl_lapor") String tgl_lapor);
 
     @FormUrlEncoded
     @POST("/api/insertBaptisDewasa.php")
@@ -165,9 +165,41 @@ public interface APIService {
      pekerjaan,alamat_kerja,ket,nama_tunangan,status_tunangan,agt_grj_tunangan,no_induk_tunangan,alamat_tunangan,
      tgl_nikah,tempat_nikah,jam_nikah*/
 
+    @FormUrlEncoded
+    @POST("/api/register.php")
+    Call<Value> registUser(@Field("tg_daftar") String tgdaf,
+                           @Field("nm") String nm,
+                           @Field("tmp_lahir") String tmp_lahir,
+                           @Field("tgl_lahir") String tgl_lahir,
+                           @Field("jk") String jk,
+                           @Field("nohp") String nohp,
+                           @Field("almt") String almt,
+                           @Field("pend") String pend,
+                           @Field("kerja") String kerja,
+                           @Field("nikah") String nikah,
+                           @Field("nm_psgn") String nm_psgn,
+                           @Field("kerja_psgn") String kerja_psgn,
+                           @Field("nm_ayah") String nm_ayah,
+                           @Field("nm_ibu") String nm_ibu,
+                           @Field("almt_ortu") String almt_ortu,
+                           @Field("kerja_ortu") String kerja_ortu,
+                           @Field("grj_ortu") String grj_ortu,
+                           @Field("grj_asal") String grj_asal,
+                           @Field("almt_grj") String almt_grj,
+                           @Field("tgl_baptis") String tgl_baptis,
+                           @Field("email") String email,
+                           @Field("pass") String pass);
+
+    @FormUrlEncoded
+    @POST("/api/login.php")
+    Call<LoginModel> loginUser(@Field("email") String email,
+                               @Field("pass") String pass);
 
     @GET("/api/getDataRenungan.php")
     Call<Value> getDataRenungan();
+
+    /**@GET("/api/getDataJemaat.php")
+    Call<Value> getDataJemaat();*/
 
 
     /**@POST("/insertBaptisAnak.php")

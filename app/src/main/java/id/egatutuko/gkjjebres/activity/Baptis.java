@@ -1,12 +1,12 @@
 package id.egatutuko.gkjjebres.activity;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
-import android.content.Intent;
-import android.view.View;
-import android.os.Bundle;
-import android.widget.Button;
 
 import id.egatutuko.gkjjebres.R;
 
@@ -37,7 +37,7 @@ public class Baptis extends AppCompatActivity implements View.OnClickListener {
         Intent intent;
         switch (v.getId()){
             case R.id.button_anak:
-                intent = new Intent(this, Baptis_anak.class);
+                intent = new Intent(Baptis.this, Baptis_anak.class);
                 startActivity(intent);
             break;
             case R.id.button_dewasa:

@@ -1,18 +1,12 @@
 package id.egatutuko.gkjjebres.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.FragmentManager;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -20,19 +14,23 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
+
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 import id.egatutuko.gkjjebres.API.APIClient;
+import id.egatutuko.gkjjebres.API.APIService;
 import id.egatutuko.gkjjebres.API.APIUtils;
 import id.egatutuko.gkjjebres.R;
-import id.egatutuko.gkjjebres.API.APIService;
 import id.egatutuko.gkjjebres.model.Value;
+import id.egatutuko.gkjjebres.utils.SessionManager;
 import id.egatutuko.gkjjebres.utils.datepicker.DPFragmentBaptisAnak;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -41,15 +39,16 @@ import retrofit2.Response;
 public class Baptis_anak extends AppCompatActivity implements DPFragmentBaptisAnak.DPFragmentListenerAnak {
 
     private ProgressDialog progress;
-    private TextView dateTimeDisplay;
+    private TextView dateTimeDisplay, tvJK;
     private TextInputEditText tglAnak, tglSipil, tglBaptis, nama_ayah, grj_ayah, alamat_ayah, induk_ayah, klp_ayah,
-                              nama_ibu, grj_ibu, alamat_ibu, induk_ibu, klp_ibu, nama_anak, tmp_lahir, noAkta, tmp_baptis, jam_baptis;
+                              nama_ibu, grj_ibu, alamat_ibu, induk_ibu, klp_ibu, nama_anak, tmp_lahir, noAkta, tmp_baptis, jam_baptis,
+                              nohpayah, nohpibu;
     private Calendar calendar;
     private SimpleDateFormat dateFormat;
-    private String date, nm_ayah, agt_grj_ayah, almt_ayah, no_induk_ayah, agt_klp_ayah,
+    private String tgl_daftar, date, nm_ayah, agt_grj_ayah, almt_ayah, no_induk_ayah, agt_klp_ayah,
                    nm_ibu, agt_grj_ibu, almt_ibu, no_induk_ibu, agt_klp_ibu,
                    nm_anak, tempat_lahir, no_akta, tempat_baptis, waktu_baptis,
-                   tgl_lahir, tgl_lapor, tgl_baptis;
+                   tgl_lahir, tgl_lapor, tgl_baptis, nohp_a, nohp_i, jenkel;
     private Button bt_akta, bt_daftar;
     private static final int PICK_IMAGE_REQUEST = 100;
     Bitmap bitmap;
@@ -59,12 +58,14 @@ public class Baptis_anak extends AppCompatActivity implements DPFragmentBaptisAn
     int DATE_DIALOG = 0;
     private RadioButton rbJK, rbSipil, rbL, rbP, rbS, rbB;
     private RadioGroup rgJK, rgSipil;
-    private Date dtAnak, dtSipil, dtBaptis;
+    String dtNow = "";
+    SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_baptis_anak);
+        sessionManager = new SessionManager(Baptis_anak.this);
 
         /**toolbar*/
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -77,8 +78,9 @@ public class Baptis_anak extends AppCompatActivity implements DPFragmentBaptisAn
         /**Display Tgl*/
         dateTimeDisplay = findViewById(R.id.textView);
         calendar = Calendar.getInstance();
-        dateFormat = new SimpleDateFormat ("dd MMM yyyy");
+        dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         date = dateFormat.format(calendar.getTime());
+        dtNow = date;
         dateTimeDisplay.setText(date);
 
         /**Binding*/
@@ -87,7 +89,7 @@ public class Baptis_anak extends AppCompatActivity implements DPFragmentBaptisAn
         bt_akta = findViewById(R.id.akta_up);
         tglAnak = findViewById(R.id.pilih_tglAnak);
         tglSipil = findViewById(R.id.pilih_tglSipil);
-        tglBaptis = findViewById(R.id.pilih_tglBaptis);
+        //tglBaptis = findViewById(R.id.pilih_tglBaptis);
         nama_ayah = findViewById(R.id.nama_ayah);
         grj_ayah = findViewById(R.id.grj_ayah);
         alamat_ayah = findViewById(R.id.alamat_ayah);
@@ -101,14 +103,35 @@ public class Baptis_anak extends AppCompatActivity implements DPFragmentBaptisAn
         nama_anak = findViewById(R.id.nama_anak);
         tmp_lahir = findViewById(R.id.tmp_lahir);
         noAkta = findViewById(R.id.noAkta);
-        tmp_baptis = findViewById(R.id.tmp_baptis);
-        jam_baptis = findViewById(R.id.jam_baptis);
+        //tmp_baptis = findViewById(R.id.tmp_baptis);
+        //jam_baptis = findViewById(R.id.jam_baptis);
+        nohpayah = findViewById(R.id.nohpayah);
+        nohpibu = findViewById(R.id.nohpibu);
         rgJK = findViewById(R.id.rg1);
         rgSipil = findViewById(R.id.rg2);
         rbL = findViewById(R.id.laki);
         rbP = findViewById(R.id.perempuan);
         rbS = findViewById(R.id.sudah);
         rbB = findViewById(R.id.belum);
+        tvJK = findViewById(R.id.jenkel);
+        jenkel = sessionManager.getUserDetail().get(SessionManager.JENIS_KELAMIN);
+        tvJK.setText(jenkel);
+
+        if(tvJK.getText().equals("L")){
+            nama_ayah.setText(sessionManager.getUserDetail().get(SessionManager.NAMA));
+            grj_ayah.setText("GKJ Jebres");
+            alamat_ayah.setText(sessionManager.getUserDetail().get(SessionManager.ALAMAT));
+            nohpayah.setText(sessionManager.getUserDetail().get(SessionManager.NO_HP));
+            induk_ayah.setText(sessionManager.getUserDetail().get(SessionManager.NO_INDUK));
+            klp_ayah.setText(sessionManager.getUserDetail().get(SessionManager.KELOMPOK_GEREJA));
+        } else {
+            nama_ibu.setText(sessionManager.getUserDetail().get(SessionManager.NAMA));
+            grj_ibu.setText("GKJ Jebres");
+            alamat_ibu.setText(sessionManager.getUserDetail().get(SessionManager.ALAMAT));
+            nohpibu.setText(sessionManager.getUserDetail().get(SessionManager.NO_HP));
+            induk_ibu.setText(sessionManager.getUserDetail().get(SessionManager.NO_INDUK));
+            klp_ibu.setText(sessionManager.getUserDetail().get(SessionManager.KELOMPOK_GEREJA));
+        }
 
 
         /**click listener*/
@@ -130,10 +153,10 @@ public class Baptis_anak extends AppCompatActivity implements DPFragmentBaptisAn
             DATE_DIALOG = 1;
             openDialog();
         });
-        tglBaptis.setOnClickListener(v -> {
+        /**tglBaptis.setOnClickListener(v -> {
             DATE_DIALOG = 2;
             openDialog();
-        });
+        });*/
         bt_akta.setOnClickListener(v -> showFileChooser());
         }
 
@@ -145,7 +168,7 @@ public class Baptis_anak extends AppCompatActivity implements DPFragmentBaptisAn
             progress.setMessage("Loading ...");
             progress.show();
             /**ambil data*/
-            String tgl_daftar = dateTimeDisplay.getText().toString().trim();
+            tgl_daftar = dtNow;
             nm_ayah = nama_ayah.getText().toString().trim();
             agt_grj_ayah = grj_ayah.getText().toString().trim();
             almt_ayah = alamat_ayah.getText().toString().trim();
@@ -161,6 +184,8 @@ public class Baptis_anak extends AppCompatActivity implements DPFragmentBaptisAn
             no_akta = noAkta.getText().toString().trim();
             tempat_baptis = tmp_baptis.getText().toString().trim();
             waktu_baptis = jam_baptis.getText().toString().trim();
+            nohp_a = nohpayah.getText().toString().trim();
+            nohp_i = nohpibu.getText().toString().trim();
             tgl_lahir = tglAnak.getText().toString();
             tgl_lapor = tglSipil.getText().toString();
             tgl_baptis = tglBaptis.getText().toString();
@@ -179,10 +204,10 @@ public class Baptis_anak extends AppCompatActivity implements DPFragmentBaptisAn
                     nm_ibu, agt_grj_ibu, almt_ibu, no_induk_ibu,
                     agt_klp_ibu, nm_anak, tempat_lahir, no_akta, tempat_baptis, waktu_baptis);
             Call<BaptisAnak> call = apiService.daftar(baptisAnak);*/
-            Call<Value> call = apiService.daftarBaptisAnak(tgl_daftar, nm_ayah, agt_grj_ayah, almt_ayah, no_induk_ayah, agt_klp_ayah,
-                                                nm_ibu, agt_grj_ibu, almt_ibu, no_induk_ibu,
+            Call<Value> call = apiService.daftarBaptisAnak(tgl_daftar, nm_ayah, agt_grj_ayah, almt_ayah, nohp_a, no_induk_ayah, agt_klp_ayah,
+                                                nm_ibu, agt_grj_ibu, almt_ibu, nohp_i, no_induk_ibu,
                                                 agt_klp_ibu, nm_anak, jk, tempat_lahir, tgl_lahir, no_akta, file_akta, status_sipil,
-                                                tgl_lapor, tgl_baptis, tempat_baptis, waktu_baptis);
+                                                tgl_lapor);
             call.enqueue(new Callback<Value>() {
                 @Override
                 public void onResponse(Call<Value> call, Response<Value> response) {
@@ -261,23 +286,6 @@ public class Baptis_anak extends AppCompatActivity implements DPFragmentBaptisAn
             byte[] imgByte = byteArrayOutputStream.toByteArray();
             return Base64.encodeToString(imgByte,Base64.DEFAULT);
         }
-
-        /**getimagepath*/
-        public String getImagePath(Uri uri)
-        {
-            String[] projection={MediaStore.Images.Media.DATA};
-            Cursor cursor=getContentResolver().query(uri,projection,null,null,null);
-            if(cursor == null){
-                return null;
-            }
-            int columnIndex= cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-            cursor.moveToFirst();
-            String s=cursor.getString(columnIndex);
-            cursor.close();
-            return s;
-        }
-
-
 
 }
 

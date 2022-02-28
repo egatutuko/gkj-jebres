@@ -1,14 +1,13 @@
 package id.egatutuko.gkjjebres.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -20,6 +19,7 @@ import id.egatutuko.gkjjebres.API.APIService;
 import id.egatutuko.gkjjebres.API.APIUtils;
 import id.egatutuko.gkjjebres.R;
 import id.egatutuko.gkjjebres.model.Value;
+import id.egatutuko.gkjjebres.utils.SessionManager;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -33,6 +33,8 @@ public class Katekisasi extends AppCompatActivity {
     private TextInputEditText nm, nmr, em;
     private Button btDaftar;
     private ProgressDialog progress;
+    String dtNow = "";
+    SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,15 +51,21 @@ public class Katekisasi extends AppCompatActivity {
         /**Tanggal daftar*/
         dateTimeDisplay = findViewById(R.id.tgl_skrg);
         calendar = Calendar.getInstance();
-        dateFormat = new SimpleDateFormat("dd MMM yyyy");
+        dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         date = dateFormat.format(calendar.getTime());
+        dtNow = date;
         dateTimeDisplay.setText(date);
+        sessionManager = new SessionManager(Katekisasi.this);
 
         /**Binding*/
         nm = findViewById(R.id.nama);
         nmr = findViewById(R.id.nomor);
         em = findViewById(R.id.email);
         btDaftar = findViewById(R.id.submit);
+
+        nm.setText(sessionManager.getUserDetail().get(SessionManager.NAMA));
+        nmr.setText(sessionManager.getUserDetail().get(SessionManager.NO_HP));
+        em.setText(sessionManager.getUserDetail().get(SessionManager.EMAIL));
 
         btDaftar.setOnClickListener(v -> {
             if (nm.getText().toString().isEmpty() || nmr.getText().toString().isEmpty() || em.getText().toString().isEmpty()){
@@ -76,7 +84,7 @@ public class Katekisasi extends AppCompatActivity {
         progress.show();
 
         /**Ambil data*/
-        tgl_daftar = dateTimeDisplay.getText().toString();
+        tgl_daftar = dtNow;
         nama = nm.getText().toString().trim();
         nomor = nmr.getText().toString().trim();
         email = em.getText().toString().trim();

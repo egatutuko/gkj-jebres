@@ -15,16 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import id.egatutuko.gkjjebres.R;
-import id.egatutuko.gkjjebres.activity.Baptis;
-import id.egatutuko.gkjjebres.activity.Info;
-import id.egatutuko.gkjjebres.activity.Jadwal;
-import id.egatutuko.gkjjebres.activity.Katekisasi;
-import id.egatutuko.gkjjebres.activity.Kontak;
-import id.egatutuko.gkjjebres.activity.MainActivity;
-import id.egatutuko.gkjjebres.activity.Pernikahan;
-import id.egatutuko.gkjjebres.activity.Renungan;
-import id.egatutuko.gkjjebres.activity.VideoIbadah;
-import id.egatutuko.gkjjebres.activity.Warta;
 import id.egatutuko.gkjjebres.model.RecyclerDataWartaJemaat;
 
 public class WartaJemaatAdapter extends RecyclerView.Adapter<WartaJemaatAdapter.RecyclerViewHolder> {
@@ -56,7 +46,7 @@ public class WartaJemaatAdapter extends RecyclerView.Adapter<WartaJemaatAdapter.
         public void onClick(View v) {
             int position = getBindingAdapterPosition();
             Intent intent = new Intent();
-            String url1 = "https://drive.google.com/file/d/1hHi9NVycw39HnwU1Hb50MArYeontTcFN/view?usp=sharing";
+            String url1 = "https://drive.google.com/file/d/1JYSzISrTsFvV-xM6jlDnnQb_7PS2dW1K/view?usp=sharing";
             String url2 = "https://drive.google.com/file/d/1zBPbhKtNSc7I0Av1Ku8aJCISt3FjHtFP/view?usp=sharing";
             String url3 = "https://drive.google.com/file/d/1QQiCezlJO3JU7pIleE1CIrr2COPK00se/view?usp=sharing";
             String url4 = "https://drive.google.com/file/d/17KRdgN6TOcZ5w7QoaAIUI82tpTmedPTg/view?usp=sharing";

@@ -1,38 +1,46 @@
 package id.egatutuko.gkjjebres.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.content.Intent;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+import id.egatutuko.gkjjebres.R;
+import id.egatutuko.gkjjebres.activity.Baptis_anak;
+import id.egatutuko.gkjjebres.activity.Baptis_dewasa;
+import id.egatutuko.gkjjebres.activity.Home;
 import id.egatutuko.gkjjebres.activity.Info;
-import id.egatutuko.gkjjebres.activity.Baptis;
 import id.egatutuko.gkjjebres.activity.Jadwal;
 import id.egatutuko.gkjjebres.activity.Katekisasi;
 import id.egatutuko.gkjjebres.activity.Kontak;
 import id.egatutuko.gkjjebres.activity.MainActivity;
-import id.egatutuko.gkjjebres.activity.Pernikahan;
-import id.egatutuko.gkjjebres.R;
-import id.egatutuko.gkjjebres.model.RecyclerDataHome;
+import id.egatutuko.gkjjebres.activity.Pernikahan_daftar;
+import id.egatutuko.gkjjebres.activity.Pra_nikah;
+import id.egatutuko.gkjjebres.activity.Profil;
 import id.egatutuko.gkjjebres.activity.Renungan;
 import id.egatutuko.gkjjebres.activity.VideoIbadah;
 import id.egatutuko.gkjjebres.activity.Warta;
+import id.egatutuko.gkjjebres.model.RecyclerDataHome;
+import id.egatutuko.gkjjebres.utils.SessionManager;
 
-public class RecyclerViewAdapterHome extends RecyclerView.Adapter<RecyclerViewAdapterHome.RecyclerViewHolder> {
+public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.RVHolderHome> {
 
     private final ArrayList<RecyclerDataHome> courseDataArrayList;
     private final Context context;
+    private SessionManager sessionManager;
+    private Activity activity;
 
     //Java Doc
-    public RecyclerViewAdapterHome(ArrayList<RecyclerDataHome> recyclerDataArrayList, Context context){
+    public HomeAdapter(ArrayList<RecyclerDataHome> recyclerDataArrayList, Context context){
 
         this.courseDataArrayList = recyclerDataArrayList;
         this.context = context;
@@ -40,11 +48,11 @@ public class RecyclerViewAdapterHome extends RecyclerView.Adapter<RecyclerViewAd
     }
 
     // View Holder Class to handle Recycler View.
-    public class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class RVHolderHome extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         private final TextView text_menu;
         private final ImageView image_menu;
-        public RecyclerViewHolder(@NonNull View itemView) {
+        public RVHolderHome(@NonNull View itemView) {
             super(itemView);
             text_menu = itemView.findViewById(R.id.textView_menu);
             image_menu = itemView.findViewById(R.id.imageView_menu);
@@ -55,6 +63,7 @@ public class RecyclerViewAdapterHome extends RecyclerView.Adapter<RecyclerViewAd
         public void onClick(View v) {
             int position = getBindingAdapterPosition();
             final Intent intent;
+            sessionManager = new SessionManager(context.getApplicationContext());
             switch (getBindingAdapterPosition()){
                 case 0:
                     intent = new Intent(context, Info.class);
@@ -75,32 +84,44 @@ public class RecyclerViewAdapterHome extends RecyclerView.Adapter<RecyclerViewAd
                     intent = new Intent(context, Kontak.class);
                     break;
                 case 6:
-                    intent = new Intent(context, Baptis.class);
+                    intent = new Intent(context, Baptis_anak.class);
                     break;
                 case 7:
-                    intent = new Intent(context, Katekisasi.class);
+                    intent = new Intent(context, Baptis_dewasa.class);
                     break;
                 case 8:
-                    intent = new Intent(context, Pernikahan.class);
+                    intent = new Intent(context, Katekisasi.class);
+                    break;
+                case 9:
+                    intent = new Intent(context, Pernikahan_daftar.class);
+                    break;
+                case 10:
+                    intent = new Intent(context, Pra_nikah.class);
+                    break;
+                case 11:
+                    intent = new Intent(context, Profil.class);
+                    break;
+                case 12:
+                    sessionManager.logoutSession();
+                    intent = new Intent(context, MainActivity.class);
+                    ((MainActivity)context).finishAndRemoveTask();
                     break;
                 default:
-                    intent = new Intent(context, MainActivity.class);
+                    intent = new Intent(context, Home.class);
                     break;
             }
             context.startActivity(intent);
         }
     }
 
-    @NonNull
-    @Override
-    public RecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RVHolderHome onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // Inflate Layout
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_layout_home, parent, false);
-        return new RecyclerViewHolder(view);
+        return new RVHolderHome(view);
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
+
+    public void onBindViewHolder(RVHolderHome holder, int position) {
         // Set the data to textview and imageview.
         RecyclerDataHome recyclerData = courseDataArrayList.get(position);
         holder.text_menu.setText(recyclerData.getTitle());
@@ -112,7 +133,4 @@ public class RecyclerViewAdapterHome extends RecyclerView.Adapter<RecyclerViewAd
         // this method returns the size of recyclerview
         return courseDataArrayList.size();
     }
-
-
-
 }

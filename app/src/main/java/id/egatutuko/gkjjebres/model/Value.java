@@ -16,6 +16,9 @@ public class Value {
     @SerializedName("result")
     @Expose
     private List<RenunganModel> result = null;
+    @SerializedName("resuts")
+    @Expose
+    private  List<WartaModel> resuts = null;
 
     public String getValue() {
         return value;
@@ -23,6 +26,14 @@ public class Value {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    public List<WartaModel> getResuts() {
+        return resuts;
+    }
+
+    public void setResuts(List<WartaModel> resuts) {
+        this.resuts = resuts;
     }
 
     public List<RenunganModel> getResult() {
